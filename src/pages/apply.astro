@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ApplicationForm from '../islands/ApplicationForm/ApplicationForm.tsx';
+import Starfield from '../components/Starfield.astro';
+---
+
+<BaseLayout
+  title="Begin Your Journey"
+  description="Begin your private application to ICE Luxury Weddings & Events. By application only."
+>
+  <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose py-24 md:py-28">
+      <p class="eyebrow text-champagne">Your story starts here</p>
+      <div class="rule mt-6" aria-hidden="true"></div>
+      <h1 class="mt-7 max-w-3xl text-balance text-4xl leading-tight text-crystal sm:text-5xl">
+        Begin your journey.
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-silver">
+        A few considered questions — the quiet beginning of a conversation. Everything you share is
+        held in confidence and read personally by the house.
+      </p>
+    </div>
+  </header>
+
+  <section class="bg-obsidian">
+    <div class="container-prose py-20 md:py-28">
+      <ApplicationForm client:load />
+    </div>
+  </section>
+</BaseLayout>

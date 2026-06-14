@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Starfield from '../components/Starfield.astro';
+
+const press = (await getCollection('press')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Recognition"
+  description="Selected press and recognition for ICE Luxury Weddings & Events."
+>
+  <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose pt-28 md:pt-36 pb-10 md:pb-14">
+      <SectionHeading
+        as="h1"
+        eyebrow="Recognition"
+        title="Quietly, in remarkable company."
+        intro="We rarely seek the spotlight — but the celebrations we compose have a way of finding it."
+      />
+    </div>
+  </header>
+
+  <!-- Featured-in honour roll: outlet names only — no quotes attributed to them. -->
+  <section class="bg-midnight-deep">
+    <div class="container-prose pt-10 md:pt-14 pb-24 md:pb-32">
+      <p class="eyebrow text-center">Featured in</p>
+      <ul class="mt-12 grid gap-px overflow-hidden rounded-3xl border border-silver/10 sm:grid-cols-3">
+        {
+          press.map((p) => (
+            <li class="reveal-on-scroll flex items-center justify-center bg-obsidian/60 px-8 py-16">
+              <span class="font-display text-3xl tracking-wide text-crystal sm:text-4xl">
+                {p.data.outlet}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="border-t border-silver/10 bg-obsidian">
+    <div class="container-prose py-16 text-center">
+      <p class="eyebrow">Thirty-four years</p>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-crystal">
+        More than three decades composing the world’s most extraordinary celebrations — and a
+        modern house built to carry that legacy forward.
+      </p>
+      <a href="/apply" class="btn-gold mt-8">Begin Your Journey</a>
+    </div>
+  </section>
+</BaseLayout>

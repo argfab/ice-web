@@ -1,0 +1,68 @@
+---
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  navVariant?: 'solid' | 'overlay';
+}
+
+const DEFAULT_TITLE = 'ICE — Luxury Weddings & Events';
+const {
+  title = DEFAULT_TITLE,
+  description = 'ICE Luxury Weddings & Events — a Bali-domiciled atelier composing the world’s most extraordinary celebrations. By application only.',
+  navVariant = 'solid',
+} = Astro.props;
+
+const fullTitle = title === DEFAULT_TITLE ? title : `${title} · ICE`;
+const canonical = Astro.url.href;
+const ogImage = new URL('/og-cover.png', Astro.site ?? Astro.url).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#05070A" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <ClientRouter />
+    <script>
+      import '../scripts/reveal';
+      import '../scripts/pointer';
+      import '../scripts/nav';
+    </script>
+  </head>
+  <body class="bg-obsidian">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-champagne focus:px-4 focus:py-2 focus:text-obsidian"
+    >
+      Skip to content
+    </a>
+    <Nav variant={navVariant} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

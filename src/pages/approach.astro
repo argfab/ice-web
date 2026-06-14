@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Starfield from '../components/Starfield.astro';
+
+const movements = [
+  {
+    title: 'Dream',
+    body: 'It begins quietly — an application, your story, the feeling you want the day to hold. No obligation, only the start of a conversation.',
+  },
+  {
+    title: 'Vision',
+    body: 'If we are right for one another, we listen far more than we speak, and translate that feeling into a coherent world: place, narrative, light, and rhythm.',
+  },
+  {
+    title: 'Creation',
+    body: 'We design the whole and assemble the makers — artisans, performers, technicians — composing a thousand unseen details into one seamless vision.',
+  },
+  {
+    title: 'Celebration',
+    body: 'The day itself. You carry nothing; a discreet team holds every thread, and a single point of contact remains yours throughout.',
+  },
+  {
+    title: 'Legacy',
+    body: 'What remains long after — the film, the memory, and a family story that begins here.',
+  },
+];
+---
+
+<BaseLayout
+  title="Approach"
+  description="How ICE composes a celebration — five movements, from a private application to a lasting legacy."
+>
+  <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose py-28 md:py-36">
+      <SectionHeading
+        as="h1"
+        eyebrow="Approach"
+        title="A way of working, not a package."
+        intro="The finest celebrations are commissioned, not ordered. It asks more of us — and is the reason we accept only a limited number of celebrations each year."
+      />
+    </div>
+  </header>
+
+  <section class="bg-obsidian">
+    <div class="container-prose py-24 md:py-32">
+      <ol class="space-y-px overflow-hidden rounded-3xl border border-silver/10">
+        {
+          movements.map((m, i) => (
+            <li class="reveal-on-scroll grid gap-6 bg-midnight-deep/60 p-10 md:grid-cols-[auto_1fr] md:gap-12 md:p-12">
+              <p class="font-display text-6xl text-champagne/70">{String(i + 1).padStart(2, '0')}</p>
+              <div>
+                <h3 class="text-2xl text-crystal sm:text-3xl">{m.title}</h3>
+                <p class="mt-3 max-w-2xl leading-relaxed text-silver">{m.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <figure class="mx-auto mt-20 max-w-3xl text-center">
+        <blockquote class="font-display text-3xl leading-snug text-crystal sm:text-4xl">
+          “There is a difference between a wedding that is organised and one that is composed. We
+          choose the second, always.”
+        </blockquote>
+        <figcaption class="eyebrow mt-6 text-silver-soft">Nicky, Founder &amp; Creative Director</figcaption>
+      </figure>
+
+      <div class="mt-16 text-center">
+        <a href="/apply" class="btn-gold">Begin Your Journey</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

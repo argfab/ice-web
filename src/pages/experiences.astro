@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Starfield from '../components/Starfield.astro';
+
+const experiences = [
+  {
+    name: 'The Blank Canvas',
+    lede: 'A celebration designed from nothing but your story.',
+    body: 'No package, no template, no starting point but the two of you. We design the entire world — concept, narrative, design, and production — and you are present only for the moments that matter.',
+  },
+  {
+    name: 'Multi-Day Worlds',
+    lede: 'A weekend, a saga, a destination transformed.',
+    body: 'Welcome gatherings, ceremonies, cultural rites, and send-offs — choreographed as one continuous story with its own rhythm, building to a single unforgettable crescendo.',
+  },
+  {
+    name: 'Art Direction & Production',
+    lede: 'The cinematic direction of a once-in-a-lifetime day.',
+    body: 'Set, light, flora, sound, scent, and table — held to a single aesthetic vision and executed by artisans we trust with the irreplaceable.',
+  },
+  {
+    name: 'The Guest Journey',
+    lede: 'Hospitality that begins long before the day.',
+    body: 'Arrivals, stays, and curated experiences so that every guest feels personally received — and your families simply arrive, and enjoy.',
+  },
+];
+---
+
+<BaseLayout
+  title="Experiences"
+  description="What ICE composes — bespoke celebrations, multi-day worlds, art direction, and the guest journey. Never packages."
+>
+  <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose py-28 md:py-36">
+      <SectionHeading
+        as="h1"
+        eyebrow="Experiences"
+        title="What we compose."
+        intro="Not a menu of packages — a set of capabilities, shaped entirely around your story. Investment is discussed privately."
+      />
+    </div>
+  </header>
+
+  <section class="bg-midnight-deep pb-24 md:pb-32">
+    <div class="container-prose space-y-6 pt-4">
+      {
+        experiences.map((e) => (
+          <article class="glass-card reveal-on-scroll grid items-start gap-6 p-8 sm:p-10 md:grid-cols-[1fr_1.6fr] md:gap-10">
+            <div>
+              <h3 class="text-xl text-crystal sm:text-2xl">{e.name}</h3>
+              <p class="mt-3 font-display text-base italic leading-snug text-champagne">{e.lede}</p>
+            </div>
+            <p class="leading-relaxed text-silver">{e.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-silver/10 bg-obsidian">
+    <div class="container-prose flex flex-col items-start gap-8 py-20 md:flex-row md:items-center md:justify-between">
+      <h2 class="max-w-xl text-3xl leading-tight text-crystal sm:text-4xl">
+        Tell us what you envision. We will tell you what is possible.
+      </h2>
+      <a href="/apply" class="btn-gold">Begin Your Journey</a>
+    </div>
+  </section>
+</BaseLayout>

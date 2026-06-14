@@ -1,0 +1,226 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import OpeningSequence from '../components/OpeningSequence.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import GlassCard from '../components/GlassCard.astro';
+import Chapter from '../components/Chapter.astro';
+import ConstellationNode from '../components/ConstellationNode.astro';
+import IceMark from '../components/IceMark.astro';
+import ParticleField from '../islands/ParticleField/ParticleField.tsx';
+import StarTrail from '../islands/StarTrail/StarTrail.tsx';
+
+const press = (await getCollection('press')).sort((a, b) => a.data.order - b.data.order);
+
+const pillars = [
+  {
+    title: 'Architects of Emotion',
+    body: 'We do not plan events. We design how a day will feel — and build a world to hold it.',
+  },
+  {
+    title: 'Experience Designers',
+    body: 'Every sense considered: light, sound, scent, taste, motion. Nothing left to a template.',
+  },
+  {
+    title: 'Dream Builders',
+    body: 'Your celebration begins as a blank canvas. We don’t follow trends — we set them.',
+  },
+];
+
+const chapters = [
+  { numeral: 'I', title: 'Dream', line: 'It begins with a feeling — a life imagined, not a date to fill.' },
+  { numeral: 'II', title: 'Vision', line: 'We translate that feeling into a world: place, light, sound, and story.' },
+  { numeral: 'III', title: 'Creation', line: 'Artisans, makers, and a thousand unseen details, composed as one.' },
+  { numeral: 'IV', title: 'Celebration', line: 'The day itself — effortless for you, unforgettable for everyone in it.' },
+  { numeral: 'V', title: 'Legacy', line: 'What remains: a memory that defines a life, and a family’s story.' },
+];
+
+const principles = [
+  'You will always know exactly where things stand.',
+  'Nothing is left to chance — and nothing to a template.',
+  'A modern house, built on thirty-four years of trust.',
+];
+
+const stars = [
+  { title: 'Cliffside vows', place: 'Uluwatu, Bali', span: 'sm:col-span-2 sm:row-span-2', img: '/images/bali-clifftop.jpg' },
+  { title: 'A jungle banquet', place: 'Ubud, Bali', span: '', img: '/images/tablescape.jpg' },
+  { title: 'Lantern send-off', place: 'Sidemen, Bali', span: '', img: '/images/lantern-night.jpg' },
+];
+---
+
+<BaseLayout navVariant="overlay">
+  <!-- 1 · Opening -->
+  <section class="relative isolate flex min-h-screen items-center justify-center overflow-hidden">
+    <img
+      src="/images/bali-clifftop.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-25"
+    />
+    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/85 via-midnight-deep/80 to-obsidian/95"></div>
+    <div class="absolute inset-0 -z-10 opacity-70"><ParticleField client:idle /></div>
+
+    <div class="container-prose flex flex-col items-center py-32 text-center">
+      <p class="eyebrow mb-12 text-champagne">ICE · Luxury Weddings &amp; Events · Bali</p>
+      <OpeningSequence />
+      <h1 class="text-glow mt-12 max-w-4xl text-balance text-4xl leading-[1.05] text-crystal sm:text-6xl lg:text-7xl">
+        Where dreams become legacy.
+      </h1>
+      <p class="mt-7 max-w-xl text-lg leading-relaxed text-crystal-dim">
+        We are not wedding planners. We are wedding architects — and every celebration begins as a
+        blank canvas.
+      </p>
+      <div class="mt-11 flex flex-wrap items-center justify-center gap-4">
+        <a href="/apply" class="btn-gold sheen">Begin Your Journey</a>
+        <a href="/the-house" class="btn-ghost-light">Discover ICE</a>
+      </div>
+    </div>
+    <span class="eyebrow absolute bottom-8 left-1/2 -translate-x-1/2 text-silver-soft" aria-hidden="true">Scroll</span>
+    <div class="pointer-events-none absolute inset-0 z-20"><StarTrail client:idle /></div>
+  </section>
+
+  <!-- 2 · The Promise -->
+  <section class="relative isolate overflow-hidden border-t border-silver/10 bg-obsidian">
+    <div class="container-prose py-24 md:py-32">
+      <SectionHeading
+        eyebrow="The ICE Difference"
+        title="Not planners. Not coordinators. Not packages."
+        intro="We are wedding architects, experience designers, and dream builders. Every celebration is a singular world, designed from the story of two people — never replicated, never templated."
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {
+          pillars.map((p, i) => (
+            <GlassCard class="reveal-on-scroll sheen">
+              <p class="font-display text-5xl text-champagne/70">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="mt-6 text-2xl text-crystal">{p.title}</h3>
+              <p class="mt-4 leading-relaxed text-silver">{p.body}</p>
+            </GlassCard>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Legacy teaser -->
+  <section class="relative overflow-hidden bg-midnight-deep">
+    <div class="container-prose grid items-center gap-12 py-24 md:grid-cols-2 md:py-32">
+      <SectionHeading
+        eyebrow="The House"
+        title="A mother. A son. A dream. A legacy."
+      />
+      <div class="space-y-6 text-lg leading-relaxed text-silver">
+        <p>
+          For thirty-four years, <span class="text-crystal">Nicky</span> has composed the world’s
+          most extraordinary celebrations — the face of the house, and the eye behind every ICE
+          commission.
+        </p>
+        <p>
+          With her son <span class="text-crystal">Tayne</span>, that legacy became ICE: the same
+          taste and trust, reimagined as a modern luxury experience — legacy and innovation, in one
+          house.
+        </p>
+        <a href="/the-house" class="link-underline inline-block font-sans text-sm text-champagne">
+          Meet the house &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · The Aisle -->
+  <section class="aisle relative">
+    <div class="container-prose py-24 md:py-32">
+      <div class="mb-16 text-center">
+        <p class="eyebrow">The Aisle</p>
+        <p class="mt-5 font-display text-2xl text-silver sm:text-3xl">Every celebration moves through five chapters.</p>
+      </div>
+      <div class="flex flex-col gap-28 md:gap-40">
+        {chapters.map((c) => <Chapter numeral={c.numeral} title={c.title} line={c.line} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Innovation -->
+  <section class="relative isolate overflow-hidden border-y border-silver/10 bg-obsidian">
+    <div class="container-prose grid gap-12 py-24 md:grid-cols-[0.9fr_1.1fr] md:py-32">
+      <SectionHeading eyebrow="Legacy + Innovation" title="Innovation in service of intimacy." />
+      <div class="space-y-6">
+        <p class="text-lg leading-relaxed text-silver">
+          ICE pairs thirty-four years of taste with a modern, transparent way of working. Technology
+          here is quiet — it exists only to make the extraordinary feel effortless, and to keep you
+          certain at every step.
+        </p>
+        <ul class="space-y-3">
+          {
+            principles.map((line) => (
+              <li class="glass reveal-on-scroll flex items-center gap-4 px-6 py-4 text-crystal">
+                <span class="h-1.5 w-1.5 flex-none rounded-full bg-champagne" aria-hidden="true" />
+                {line}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Constellation teaser -->
+  <section class="relative isolate overflow-hidden bg-midnight-deep">
+    <div class="diamond-grid absolute inset-0 -z-10 opacity-40" aria-hidden="true"></div>
+    <div class="container-prose py-24 md:py-32">
+      <SectionHeading
+        eyebrow="Portfolio"
+        title="A constellation of love stories."
+        intro="Much of our work is, by request, never published. A few of the worlds we have built —"
+      />
+      <div class="mt-14 grid auto-rows-[240px] grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+        {stars.map((s) => <ConstellationNode title={s.title} place={s.place} span={s.span} img={s.img} />)}
+        <a href="/portfolio" class="glass-card flex h-full items-center justify-center p-7 text-center transition-transform duration-500 ease-luxe hover:-translate-y-2 sm:col-span-3 lg:col-span-2">
+          <span class="font-display text-xl text-champagne">Enter the constellation &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Recognition -->
+  <section class="border-t border-silver/10 bg-obsidian">
+    <div class="container-prose flex flex-col items-center gap-8 py-16">
+      <p class="eyebrow">Featured in</p>
+      <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+        {press.map((p) => <li class="font-display text-2xl tracking-wide text-silver/70">{p.data.outlet}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8 · Finale -->
+  <section class="relative isolate flex min-h-[80vh] items-center justify-center overflow-hidden bg-obsidian">
+    <img
+      src="/images/fireworks.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-30"
+    />
+    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/85 via-midnight-deep/80 to-obsidian/95"></div>
+    <div class="container-prose flex flex-col items-center py-24 text-center">
+      <IceMark class="h-20 w-20 text-champagne" />
+      <p class="eyebrow mt-10">Your story starts here</p>
+      <h2 class="mt-6 max-w-3xl text-balance text-4xl leading-tight text-crystal sm:text-6xl">
+        Begin your journey.
+      </h2>
+      <a href="/apply" class="btn-gold mt-11">Begin Your Journey</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .aisle {
+    background: linear-gradient(
+      180deg,
+      #05070a 0%,
+      #060f1f 22%,
+      #0b1a2f 46%,
+      #13243d 64%,
+      #1a1c2c 82%,
+      #05070a 100%
+    );
+  }
+</style>

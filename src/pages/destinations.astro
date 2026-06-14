@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+import Starfield from '../components/Starfield.astro';
+
+const destinations = (await getCollection('destinations')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const statusLabel: Record<string, string> = {
+  flagship: 'Flagship',
+  available: 'Now composing',
+  'by-request': 'By request',
+};
+---
+
+<BaseLayout
+  title="Destinations"
+  description="Bali, our home — and select corners of the world, composed with insider access."
+>
+  <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose py-28 md:py-36">
+      <SectionHeading
+        as="h1"
+        eyebrow="Destinations"
+        title="The places we know intimately."
+        intro="We do not work everywhere. We work where we have the relationships to make the extraordinary feel effortless."
+      />
+    </div>
+  </header>
+
+  <section class="bg-midnight-deep pb-24 md:pb-32">
+    <div class="container-prose space-y-20 pt-4">
+      {
+        destinations.map((d, i) => (
+          <article
+            class:list={[
+              'reveal-on-scroll grid items-center gap-10 md:grid-cols-2',
+              i % 2 === 1 && 'md:[&>figure]:order-last',
+            ]}
+          >
+            <figure>
+              <PlaceholderImage
+                ratio="aspect-[4/3]"
+                label={statusLabel[d.data.status]}
+                src={d.data.image ? `/images/${d.data.image}` : undefined}
+                alt={`${d.data.title} — ${d.data.region}`}
+              />
+            </figure>
+            <div>
+              <p class="eyebrow">{d.data.region}</p>
+              <h2 class="mt-4 text-3xl text-crystal sm:text-4xl">{d.data.title}</h2>
+              <p class="mt-5 text-lg leading-relaxed text-silver">{d.data.summary}</p>
+              {d.data.detail && <p class="mt-4 leading-relaxed text-silver-soft">{d.data.detail}</p>}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-silver/10 bg-obsidian">
+    <div class="container-prose py-20 text-center">
+      <p class="mx-auto max-w-2xl text-balance text-xl leading-relaxed text-crystal">
+        Somewhere else in mind? The most memorable celebrations often begin with a place no
+        catalogue would list.
+      </p>
+      <a href="/apply" class="btn-gold mt-8">Begin Your Journey</a>
+    </div>
+  </section>
+</BaseLayout>

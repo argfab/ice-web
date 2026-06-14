@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Starfield from '../components/Starfield.astro';
+---
+
+<BaseLayout title="Not found" description="This page could not be found.">
+  <section class="relative isolate flex min-h-[85vh] items-center overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose max-w-2xl py-24 text-center">
+      <p class="font-display text-7xl text-champagne/70">404</p>
+      <h1 class="mt-6 text-balance text-3xl leading-tight text-crystal sm:text-4xl">
+        This path leads somewhere we have not yet composed.
+      </h1>
+      <p class="mx-auto mt-6 max-w-md leading-relaxed text-silver">
+        Let us guide you back to where the story begins.
+      </p>
+      <a href="/" class="btn-gold mt-10">Return home</a>
+    </div>
+  </section>
+</BaseLayout>
