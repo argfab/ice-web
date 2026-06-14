@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "version": "0.1.0",
-  "description": "ICE Luxury Weddings & Events — front-end (Astro static site).",
+  "description": "ICE Luxury Weddings & Events \u2014 front-end (Astro static site).",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -28,5 +28,6 @@
     "@types/react-dom": "^18.3.0",
     "sharp": "^0.33.5",
     "typescript": "^5.6.0"
-  }
+  },
+  "packageManager": "pnpm@9.12.0"
 }
