@@ -7,7 +7,8 @@ file.
 
 > **The whole workflow:** open this folder in Claude Code → say **"set up and start
 > the site"** → design by describing what you want → when you're happy, say **"save
-> and push my changes."** That's it.
+> and send my changes for approval."** The site owner reviews and approves before
+> anything is accepted.
 
 ---
 
@@ -40,12 +41,14 @@ Roughly where things live (Claude handles this — just FYI):
 - **Colours, fonts, spacing** → `tailwind.config.mjs` + `src/styles/global.css`
 - **Photos** → referenced by web address in the page/content files
 
-## 4. When you're happy — publish
+## 4. When you're happy — send it for approval
 
-Say: **“Save and push my changes.”** Claude commits your work and pushes it to
-GitHub. The site owner then takes it live. Done.
+Say: **“Save and send my changes for approval.”** Claude saves your work to a new
+branch and opens a **pull request** for the site owner to review. Once the owner
+approves it, the change is accepted. You never publish directly — the owner has
+the final say on every change.
 
-<sub>For Claude: `pnpm build` to confirm it's healthy, then `git add -A && git commit -m "<short description>" && git push`.</sub>
+<sub>For Claude: never commit or push to `main` (it's protected and will reject it). Run `pnpm build`, then `git checkout -b design/<short-topic>`, `git add -A && git commit -m "<short description>"`, `git push -u origin HEAD`, and open a PR: `gh pr create --fill --base main` (or share the “Create a pull request” link that `git push` prints). It merges only after the owner's review.</sub>
 
 ## 5. If something looks wrong
 - *“The site won't start”* (or paste any red error text) → Claude fixes it.
