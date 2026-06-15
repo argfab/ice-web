@@ -1,0 +1,74 @@
+---
+/**
+ * A realistic gold brilliant-cut diamond — each facet filled with its own
+ * champagne/gold gradient so it reads as a shaded, metallic gem (rather than the
+ * thin line-art IceMark). Crisp facet edges, a bright table + central pavilion
+ * reflection, top-light highlights. Used as the home-hero centrepiece; the
+ * OpeningSequence adds the slow spin, halo and sparkle glints around it.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 200 200"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient id="ice-g-table" x1="0.1" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#FCEDBE" />
+      <stop offset="0.55" stop-color="#EAD095" />
+      <stop offset="1" stop-color="#CBA85F" />
+    </linearGradient>
+    <linearGradient id="ice-g-crown-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9CB90" />
+      <stop offset="1" stop-color="#B0863F" />
+    </linearGradient>
+    <linearGradient id="ice-g-crown-deep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C39C53" />
+      <stop offset="1" stop-color="#6F5128" />
+    </linearGradient>
+    <linearGradient id="ice-g-pav-bright" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F3DA9E" />
+      <stop offset="0.5" stop-color="#D8B673" />
+      <stop offset="1" stop-color="#A37C40" />
+    </linearGradient>
+    <linearGradient id="ice-g-pav-deep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8C6731" />
+      <stop offset="1" stop-color="#3C2B14" />
+    </linearGradient>
+  </defs>
+
+  <!-- facets (each edge-stroked for crisp definition) -->
+  <g stroke="#4a3617" stroke-opacity="0.45" stroke-width="0.7" stroke-linejoin="round">
+    <!-- crown -->
+    <polygon points="80,68 120,68 100,90" fill="url(#ice-g-table)" />
+    <polygon points="80,68 66,90 100,90" fill="url(#ice-g-crown-mid)" />
+    <polygon points="120,68 100,90 134,90" fill="url(#ice-g-crown-mid)" />
+    <polygon points="80,68 52,90 66,90" fill="url(#ice-g-crown-deep)" />
+    <polygon points="120,68 134,90 148,90" fill="url(#ice-g-crown-deep)" />
+    <!-- pavilion -->
+    <polygon points="66,90 100,90 100,148" fill="url(#ice-g-pav-bright)" />
+    <polygon points="100,90 134,90 100,148" fill="url(#ice-g-pav-bright)" />
+    <polygon points="52,90 66,90 100,148" fill="url(#ice-g-pav-deep)" />
+    <polygon points="134,90 148,90 100,148" fill="url(#ice-g-pav-deep)" />
+  </g>
+
+  <!-- crisp silhouette -->
+  <path
+    d="M80,68 L120,68 L148,90 L100,148 L52,90 Z"
+    fill="none"
+    stroke="#6E5326"
+    stroke-width="1.1"
+    stroke-linejoin="round"
+  />
+  <!-- top-light highlights -->
+  <path d="M80,68 L120,68" stroke="#FBEABA" stroke-width="1.4" stroke-linecap="round" opacity="0.9" />
+  <path d="M52,90 L148,90" stroke="#EAD197" stroke-width="0.7" opacity="0.5" />
+  <path d="M100,90 L100,148" stroke="#F6E3AE" stroke-width="0.6" opacity="0.45" />
+</svg>

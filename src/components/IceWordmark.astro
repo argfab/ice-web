@@ -1,0 +1,22 @@
+---
+// ICE wordmark lockup. "ICE" in the couture display face; size + colour are set by
+// the parent (text-* classes). `sub` shows the descriptor line; `shimmer` applies the
+// champagne sweep (use sparingly — e.g. the home opener, not the nav).
+interface Props {
+  class?: string;
+  sub?: boolean;
+  shimmer?: boolean;
+}
+const { class: className = '', sub = true, shimmer = false } = Astro.props;
+---
+
+<span class:list={['inline-flex flex-col leading-none', className]}>
+  <span class:list={['font-display tracking-wordmark', shimmer && 'champagne-text']}>ICE</span>
+  {
+    sub && (
+      <span class="mt-1.5 font-sans text-[0.3em] uppercase tracking-[0.3em] text-silver-soft">
+        Luxury Weddings &amp; Events
+      </span>
+    )
+  }
+</span>

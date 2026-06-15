@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  align?: 'left' | 'center';
+  as?: 'h1' | 'h2';
+}
+const { eyebrow, title, intro, align = 'left', as = 'h2' } = Astro.props;
+const Heading = as;
+const alignClass = align === 'center' ? 'items-center text-center' : 'items-start text-left';
+---
+
+<div class:list={['flex flex-col gap-5', alignClass]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <div class="rule" aria-hidden="true"></div>
+  <Heading class="max-w-3xl text-3xl leading-tight text-crystal sm:text-4xl lg:text-5xl">
+    {title}
+  </Heading>
+  {intro && <p class="max-w-prose text-base leading-relaxed text-silver sm:text-lg">{intro}</p>}
+</div>

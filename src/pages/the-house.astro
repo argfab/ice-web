@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+import Starfield from '../components/Starfield.astro';
+
+const founders = [
+  {
+    name: 'Nicky',
+    role: 'Founder & Creative Director',
+    bio: 'Thirty-four years composing the world’s most extraordinary celebrations. The face of the house and the eye behind every ICE commission — featured in Forbes, Vogue Bride, and Tatler. Her gift is not logistics; it is seeing the celebration a couple cannot yet picture, and then building it.',
+  },
+  {
+    name: 'Tayne',
+    role: 'Visionary & Director of Innovation',
+    bio: 'The son. The entrepreneur reimagining a storied atelier as a modern luxury experience — pairing his mother’s instinct with technology, transparency, and a relentless forward vision. He ensures ICE is always a step ahead, without losing an ounce of soul.',
+  },
+];
+---
+
+<BaseLayout
+  title="The House"
+  description="ICE Luxury Weddings & Events — a mother-and-son house pairing thirty-four years of legacy with modern innovation."
+>
+  <header class="relative isolate overflow-hidden bg-obsidian">
+    <img
+      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/ddd547f76_IMG_1269.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-20"
+    />
+    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/88 via-midnight-deep/82 to-obsidian/95"></div>
+    <Starfield />
+    <div class="container-prose py-28 md:py-36">
+      <SectionHeading
+        as="h1"
+        eyebrow="The House"
+        title="A mother, a son, and a shared obsession with the extraordinary."
+        intro="ICE is the meeting of two forces — thirty-four years of legacy, and a modern vision for what a luxury celebration can be."
+      />
+    </div>
+  </header>
+
+  <!-- The legacy story -->
+  <section class="bg-midnight-deep">
+    <div class="container-prose grid gap-16 py-24 md:grid-cols-2 md:py-32">
+      <div class="space-y-6 text-lg leading-relaxed text-silver reveal-on-scroll">
+        <p>
+          It began with a mother. For more than three decades, Nicky earned a reputation among those
+          who could choose anyone — for taste, for discretion, and for turning a dream described in
+          a single sentence into a world no one could forget.
+        </p>
+        <p>
+          Then came her son. Tayne saw what his mother had built and asked a simple question: what
+          if this legacy could be carried further — made more transparent, more considered, more
+          alive — without losing the human touch that made it matter?
+        </p>
+        <p>
+          Together they founded <span class="text-crystal">ICE Luxury Weddings &amp; Events</span>:
+          legacy and innovation, experience and technology, trust and creativity — one house.
+        </p>
+      </div>
+      <figure class="reveal-on-scroll self-center border-l border-champagne/40 pl-8">
+        <blockquote class="font-display text-3xl leading-snug text-crystal sm:text-4xl">
+          “We are not measured by what we add, but by what you never have to think about.”
+        </blockquote>
+        <figcaption class="eyebrow mt-6 text-silver-soft">Nicky, Founder &amp; Creative Director</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="bg-obsidian">
+    <div class="container-prose grid gap-12 py-24 md:grid-cols-2 md:py-32">
+      {
+        founders.map((f) => (
+          <article class="reveal-on-scroll">
+            <PlaceholderImage ratio="aspect-[3/4]" label="Portrait to follow" />
+            <h2 class="mt-7 text-3xl text-crystal">{f.name}</h2>
+            <p class="mt-1 font-display text-lg italic text-champagne">{f.role}</p>
+            <p class="mt-4 leading-relaxed text-silver">{f.bio}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-silver/10 bg-midnight-deep">
+    <div class="container-prose py-20 text-center">
+      <p class="mx-auto max-w-2xl text-balance text-xl leading-relaxed text-crystal">
+        Composed from our home in Bali, for couples across the world.
+      </p>
+      <a href="/apply" class="btn-gold mt-8">Begin Your Journey</a>
+    </div>
+  </section>
+</BaseLayout>

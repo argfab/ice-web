@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Starfield from '../components/Starfield.astro';
+---
+
+<BaseLayout
+  title="Private Enquiry"
+  description="A quiet first word with ICE Luxury Weddings & Events — before, or instead of, a full application."
+>
+  <section class="relative isolate flex min-h-[80vh] items-center overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose grid gap-12 py-24 md:grid-cols-2 md:items-center">
+      <SectionHeading
+        as="h1"
+        eyebrow="Private Enquiry"
+        title="A quiet first word."
+        intro="Not quite ready for the full application? You are welcome to simply say hello. Every message reaches the house directly and is held in confidence."
+      />
+      <div class="space-y-8">
+        <p class="text-lg leading-relaxed text-silver">
+          Tell us a little about what you are imagining, and we will write back personally. When you
+          feel ready to go further, the application opens the door to designing it together.
+        </p>
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <a href="mailto:hello@iceluxuryweddings.com" class="btn-outline">Write to us</a>
+          <a href="/apply" class="btn-gold">Begin Your Journey</a>
+        </div>
+        <p class="text-sm leading-relaxed text-silver-soft">
+          We accept a limited number of celebrations each year, and read every enquiry ourselves.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

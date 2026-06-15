@@ -1,0 +1,14 @@
+---
+interface Props {
+  numeral: string;
+  title: string;
+  line: string;
+}
+const { numeral, title, line } = Astro.props;
+---
+
+<div class="reveal-on-scroll flex flex-col items-center gap-5 text-center">
+  <span class="font-display text-base tracking-[0.5em] text-champagne">{numeral}</span>
+  <h3 class="font-display text-5xl text-crystal sm:text-7xl lg:text-8xl">{title}</h3>
+  <p class="max-w-md text-base leading-relaxed text-silver">{line}</p>
+</div>

@@ -1,0 +1,18 @@
+---
+/**
+ * Starry diamond-dust background + champagne cursor-trail overlay — the same
+ * pairing used on the home hero. Drop inside a section/header that is
+ * `relative isolate overflow-hidden` (so the layers stay scoped to it).
+ * Both canvases are performance-budgeted and disable themselves under
+ * reduced-motion / coarse-pointer.
+ */
+import ParticleField from '../islands/ParticleField/ParticleField.tsx';
+import StarTrail from '../islands/StarTrail/StarTrail.tsx';
+---
+
+<div class="absolute inset-0 -z-10 opacity-70" aria-hidden="true">
+  <ParticleField client:visible />
+</div>
+<div class="pointer-events-none absolute inset-0 z-20" aria-hidden="true">
+  <StarTrail client:idle />
+</div>

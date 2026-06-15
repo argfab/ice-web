@@ -1,0 +1,50 @@
+---
+// A "star" in the portfolio constellation. With `img` it shows a real photo behind
+// a dark scrim; without one it falls back to a glass tile. Lifts on hover.
+interface Props {
+  title: string;
+  place: string;
+  span?: string; // optional grid-span classes
+  href?: string;
+  img?: string;
+}
+const { title, place, span = '', href = '/portfolio', img } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'group sheen relative flex h-full flex-col justify-end overflow-hidden rounded-2xl border border-silver/15 p-7 transition-transform duration-500 ease-luxe hover:-translate-y-2 hover:border-champagne/40',
+    !img && 'glass-card',
+    span,
+  ]}
+>
+  {
+    img ? (
+      <Fragment>
+        <img
+          src={img}
+          alt={title}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-luxe group-hover:scale-105"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent"
+          aria-hidden="true"
+        />
+      </Fragment>
+    ) : (
+      <div class="diamond-grid absolute inset-0 opacity-40" aria-hidden="true" />
+    )
+  }
+  <div
+    class="absolute right-6 top-6 h-1.5 w-1.5 rounded-full bg-champagne/70 transition-all duration-500 ease-luxe group-hover:scale-150 group-hover:bg-champagne"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative z-[2]">
+    <p class="eyebrow text-champagne">{place}</p>
+    <p class="mt-2 font-display text-2xl text-crystal sm:text-3xl">{title}</p>
+  </div>
+</a>

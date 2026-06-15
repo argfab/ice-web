@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ConstellationNode from '../components/ConstellationNode.astro';
+import Starfield from '../components/Starfield.astro';
+
+// Each "star" is a love story. Slots sized for film/photography to be dropped in later.
+const stars = [
+  { title: 'Cliffside vows', place: 'Uluwatu, Bali', span: 'sm:col-span-2 sm:row-span-2', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/b72df930a_ClifftopSunsetImage.jpg' },
+  { title: 'A jungle banquet', place: 'Ubud, Bali', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/6219d8aa1_853eeb24a_IMG_1290.jpg' },
+  { title: 'Harvest under the vines', place: 'Franschhoek, South Africa', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/c13e65a27_270519241_IMG_12881.jpg' },
+  { title: 'Lantern send-off', place: 'Sidemen, Bali', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/1f28e7e5e_GlampNusa-951.jpg' },
+  { title: 'A palace of light', place: 'Rajasthan, India', span: 'sm:col-span-2', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/83587c304_IndianWeddingImage3.jpg' },
+  { title: 'Ocean terrace', place: 'Cape Peninsula', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/769415c40_b088dda90_BeachIMG_2428.jpg' },
+  { title: 'Golden-hour rite', place: 'Tabanan, Bali', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/ddd547f76_IMG_1269.jpg' },
+  { title: 'A Florentine evening', place: 'Tuscany, Italy', span: 'sm:col-span-2', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/f6c97968a_AsianIMG_0218.jpg' },
+];
+---
+
+<BaseLayout
+  title="Portfolio"
+  description="A constellation of love stories composed by ICE Luxury Weddings & Events."
+>
+  <section class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <Starfield />
+    <div class="container-prose py-28 md:py-36">
+      <SectionHeading
+        as="h1"
+        eyebrow="Portfolio"
+        title="A constellation of love stories."
+        intro="Films and photography are shared in full during your conversation with the house — much of our work is, by request, never published. A few of the worlds we have built:"
+      />
+      <div class="mt-16 grid auto-rows-[240px] grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+        {stars.map((s) => <ConstellationNode title={s.title} place={s.place} span={s.span} img={s.img} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-silver/10 bg-obsidian">
+    <div class="container-prose flex flex-col items-start gap-8 py-20 md:flex-row md:items-center md:justify-between">
+      <h2 class="max-w-xl text-3xl leading-tight text-crystal sm:text-4xl">
+        The rest is shared in confidence.
+      </h2>
+      <a href="/apply" class="btn-gold">Begin Your Journey</a>
+    </div>
+  </section>
+</BaseLayout>
