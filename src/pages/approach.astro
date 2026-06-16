@@ -50,9 +50,9 @@ const movements = [
 
   <section class="bg-obsidian">
     <div class="container-prose py-24 md:py-32">
-      <ol class="space-y-px overflow-hidden rounded-3xl" style="border:1px solid rgba(65,105,225,0.20);">
+      <ol class="space-y-px overflow-hidden rounded-3xl blue-border">
         {movements.map((m, i) => (
-          <li class="approach-step reveal-on-scroll grid gap-6 bg-midnight-deep/60 p-10 md:grid-cols-[auto_1fr] md:gap-12 md:p-12" style="border-bottom:1px solid rgba(65,105,225,0.10);">
+          <li class="approach-step reveal-on-scroll grid gap-6 bg-midnight-deep/60 p-10 md:grid-cols-[auto_1fr] md:gap-12 md:p-12 blue-border-b">
             <p class="font-display text-6xl text-burgundy-bright/80">{String(i + 1).padStart(2, '0')}</p>
             <div>
               <h3 class="text-2xl text-crystal sm:text-3xl">{m.title}</h3>

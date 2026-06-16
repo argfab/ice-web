@@ -87,12 +87,19 @@ export default function DreamBuilderDemo() {
   const [typing, setTyping] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const reduced = useRef(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     reduced.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }, []);
 
   const currentFeature = FEATURES.find((f) => f.id === active) ?? FEATURES[0]!;
+
+  // Expose the active accent as a CSS custom property via the CSSOM (CSP-safe:
+  // no inline style attribute reaches the SSR'd markup). Children read var(--accent).
+  useEffect(() => {
+    rootRef.current?.style.setProperty('--accent', currentFeature.accentColor);
+  }, [active]);
 
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -121,7 +128,7 @@ export default function DreamBuilderDemo() {
   }, [active]);
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+    <div ref={rootRef} className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
       {/* Feature selector */}
       <div className="flex flex-col gap-3">
         {FEATURES.map((f) => {
@@ -139,15 +146,17 @@ export default function DreamBuilderDemo() {
               aria-pressed={isActive}
             >
               <span
-                className="mt-0.5 flex-none font-display text-2xl transition-colors duration-300"
-                style={{ color: isActive ? f.accentColor : 'rgba(199,205,212,0.35)' }}
+                className={`mt-0.5 flex-none font-display text-2xl transition-colors duration-300 ${
+                  isActive ? 'accent-text' : 'text-silver/35'
+                }`}
               >
                 {f.icon}
               </span>
               <div>
                 <p
-                  className="font-sans text-xs uppercase tracking-widest transition-colors duration-300"
-                  style={{ color: isActive ? f.accentColor : 'rgba(154,164,176,0.8)' }}
+                  className={`font-sans text-xs uppercase tracking-widest transition-colors duration-300 ${
+                    isActive ? 'accent-text' : 'text-silver-soft/80'
+                  }`}
                 >
                   {isActive ? '● Active' : '○ Module'}
                 </p>
@@ -172,17 +181,11 @@ export default function DreamBuilderDemo() {
         {/* Description */}
         <div className="glass rounded-2xl p-7">
           <div className="flex items-center gap-3">
-            <span
-              className="font-display text-3xl"
-              style={{ color: currentFeature.accentColor }}
-            >
+            <span className="accent-text font-display text-3xl">
               {currentFeature.icon}
             </span>
             <div>
-              <p
-                className="text-xs uppercase tracking-widest"
-                style={{ color: currentFeature.accentColor }}
-              >
+              <p className="accent-text text-xs uppercase tracking-widest">
                 {currentFeature.title}
               </p>
               <p className="mt-0.5 text-sm italic text-crystal">{currentFeature.tagline}</p>
@@ -202,10 +205,7 @@ export default function DreamBuilderDemo() {
             <span className="h-3 w-3 rounded-full bg-silver/20"></span>
             <span className="h-3 w-3 rounded-full bg-silver/20"></span>
             <span className="h-3 w-3 rounded-full bg-silver/20"></span>
-            <span
-              className="ml-3 text-xs uppercase tracking-widest"
-              style={{ color: currentFeature.accentColor }}
-            >
+            <span className="accent-text ml-3 text-xs uppercase tracking-widest">
               ICE · {currentFeature.title}
             </span>
           </div>
@@ -215,16 +215,15 @@ export default function DreamBuilderDemo() {
             {displayedLines.map((line, i) => (
               <p
                 key={i}
+                ref={(el) => { if (el) el.style.animationDelay = `${i * 0.04}s`; }}
                 className="animate-fade-up text-silver/80"
-                style={{ animationDelay: `${i * 0.04}s` }}
               >
                 {line}
               </p>
             ))}
             {typing && (
               <span
-                className="inline-block h-4 w-0.5 animate-pulse"
-                style={{ backgroundColor: currentFeature.accentColor }}
+                className="accent-bg inline-block h-4 w-0.5 animate-pulse"
                 aria-hidden="true"
               />
             )}
@@ -232,10 +231,7 @@ export default function DreamBuilderDemo() {
 
           {/* Subtle glow */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-10"
-            style={{
-              background: `radial-gradient(40% 40% at 80% 20%, ${currentFeature.accentColor}, transparent)`,
-            }}
+            className="accent-glow pointer-events-none absolute inset-0 opacity-10"
             aria-hidden="true"
           />
         </div>
@@ -245,10 +241,7 @@ export default function DreamBuilderDemo() {
           <p className="text-xs text-silver/60">
             Dream Builder · Exclusive to ICE couples
           </p>
-          <span
-            className="flex items-center gap-1.5 text-xs"
-            style={{ color: currentFeature.accentColor }}
-          >
+          <span className="accent-text flex items-center gap-1.5 text-xs">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current"></span>
             Live
           </span>

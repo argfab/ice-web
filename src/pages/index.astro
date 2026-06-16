@@ -145,11 +145,11 @@ const stars = [
     <!-- Layer 1: video background -->
     <video
       id="hero-video"
-      autoplay
       muted
       loop
       playsinline
-      preload="auto"
+      preload="none"
+      poster="/videos/hero-poster.webp"
       aria-hidden="true"
       class="absolute inset-0 h-full w-full object-cover"
     >
@@ -248,7 +248,7 @@ const stars = [
   </section>
 
   <!-- 4 · STATS -->
-  <section class="section-blue-border bg-obsidian" style="border-bottom: 1px solid rgba(65,105,225,0.18);">
+  <section class="section-blue-border bg-obsidian blue-border-b2">
     <div class="container-prose py-16 md:py-20">
       <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-silver/10 md:grid-cols-4">
         {stats.map((s, i) => (
@@ -423,7 +423,7 @@ const stars = [
             <span class={`press-name press-name--lg ${pressClass(p.data.outlet)} px-8 sm:px-14 whitespace-nowrap`}>
               {p.data.outlet}
             </span>
-            <span class="press-divider select-none" style="color: rgba(65,105,225,0.60)">◆</span>
+            <span class="press-divider select-none blue-text">◆</span>
           </li>
         ))}
       </ul>
@@ -494,9 +494,22 @@ const stars = [
 <script>
   function playHeroVideo() {
     const video = document.getElementById('hero-video') as HTMLVideoElement | null;
-    if (video) {
-      video.muted = true;
+    if (!video) return;
+    // Respect reduced-motion: keep the poster frame, don't play the video.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    video.muted = true;
+    // Hero paints instantly via the poster (fast LCP). The full-quality video uses
+    // preload="none" and only starts downloading/playing once the page is idle,
+    // so it never competes with first paint. Quality/size are unchanged.
+    const start = () => {
+      video.preload = 'auto';
       video.play().catch(() => {});
+    };
+    if ('requestIdleCallback' in window) {
+      (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => void })
+        .requestIdleCallback(start, { timeout: 2000 });
+    } else {
+      setTimeout(start, 1200);
     }
   }
   // Fires on initial load AND after every View Transitions navigation

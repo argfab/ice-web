@@ -39,8 +39,7 @@ const differentiators = [
       aria-hidden="true"
       width="1920"
       height="1080"
-      class="absolute inset-0 -z-30 h-full w-full object-cover"
-      style="opacity:0.07"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-[0.07]"
     />
     <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian via-midnight-deep/90 to-obsidian"></div>
     <Starfield />
@@ -70,7 +69,7 @@ const differentiators = [
   <!-- ═══════════════════════════════════════════════════════════════════════════
     WHY — The problem we solved
   ══════════════════════════════════════════════════════════════════════════════ -->
-  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+  <section class="bg-obsidian sec-glow">
     <div class="container-prose grid items-center gap-14 py-24 md:grid-cols-[1fr_0.9fr] md:py-32">
       <div class="reveal-on-scroll space-y-7 text-lg leading-relaxed text-silver">
         <p>
@@ -102,7 +101,7 @@ const differentiators = [
   <!-- ═══════════════════════════════════════════════════════════════════════════
     INTERACTIVE PLATFORM DEMO
   ══════════════════════════════════════════════════════════════════════════════ -->
-  <section id="platform" class="bg-midnight-deep" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+  <section id="platform" class="bg-midnight-deep sec-glow">
     <div class="container-prose py-24 md:py-32">
       <SectionHeading
         eyebrow="The Platform"
@@ -118,7 +117,7 @@ const differentiators = [
   <!-- ═══════════════════════════════════════════════════════════════════════════
     DIFFERENTIATORS
   ══════════════════════════════════════════════════════════════════════════════ -->
-  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);border-bottom:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08),0 1px 22px rgba(65,105,225,0.06);">
+  <section class="bg-obsidian sec-glow-y">
     <div class="container-prose grid gap-12 py-24 md:grid-cols-[0.9fr_1.1fr] md:py-28">
       <SectionHeading
         eyebrow="Only at ICE"
@@ -126,8 +125,8 @@ const differentiators = [
       />
       <ul class="space-y-4">
         {differentiators.map((d) => (
-          <li class="diff-item reveal-on-scroll glass flex items-start gap-4 px-6 py-5 text-crystal" style="border-left:2px solid rgba(65,105,225,0.35);">
-            <span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-burgundy-bright" style="box-shadow:0 0 6px rgba(65,105,225,0.70)" aria-hidden="true"></span>
+          <li class="diff-item reveal-on-scroll glass flex items-start gap-4 px-6 py-5 text-crystal blue-border-l">
+            <span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-burgundy-bright blue-glow-dot" aria-hidden="true"></span>
             <span class="leading-relaxed">{d}</span>
           </li>
         ))}
@@ -149,7 +148,7 @@ const differentiators = [
         {steps.map((s, i) => (
           <li class="reveal-on-scroll relative flex gap-8 pb-10">
             <div class="flex flex-col items-center">
-              <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-burgundy-soft/70 bg-obsidian text-xs text-burgundy-bright" style="box-shadow:0 0 10px rgba(65,105,225,0.30)">
+              <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-burgundy-soft/70 bg-obsidian text-xs text-burgundy-bright blue-glow">
                 {s.step}
               </span>
               {i < steps.length - 1 && (

@@ -137,15 +137,15 @@ const teamMembers = [
   </section>
 
   <!-- THREE PILLARS -->
-  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);border-bottom:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08),0 1px 22px rgba(65,105,225,0.06);">
+  <section class="bg-obsidian sec-glow-y">
     <div class="container-prose py-20 md:py-24">
       <dl class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-silver/10 sm:grid-cols-3">
-        <div class="flex flex-col gap-3 bg-midnight-deep/60 p-10" style="border-right:1px solid rgba(65,105,225,0.12)">
+        <div class="flex flex-col gap-3 bg-midnight-deep/60 p-10 blue-border-r">
           <dt class="eyebrow text-champagne">Legacy</dt>
           <dd class="font-display text-5xl text-burgundy-bright">30+</dd>
           <p class="text-sm leading-relaxed text-silver">Years composing extraordinary celebrations across four continents.</p>
         </div>
-        <div class="flex flex-col gap-3 bg-midnight-deep/60 p-10" style="border-right:1px solid rgba(65,105,225,0.12)">
+        <div class="flex flex-col gap-3 bg-midnight-deep/60 p-10 blue-border-r">
           <dt class="eyebrow text-champagne">Innovation</dt>
           <dd class="font-display text-3xl text-burgundy-bright leading-tight">Creative Vision</dd>
           <p class="text-sm leading-relaxed text-silver">Future-focused design intelligence paired with generational instinct.</p>
@@ -230,7 +230,7 @@ const teamMembers = [
   </section>
 
   <!-- THE TEAM -->
-  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+  <section class="bg-obsidian sec-glow">
     <div class="container-prose py-24 md:py-32">
       <SectionHeading
         eyebrow="The Heartbeat of ICE"
@@ -247,7 +247,7 @@ const teamMembers = [
   </section>
 
   <!-- TIMELINE -->
-  <section class="bg-midnight-deep" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+  <section class="bg-midnight-deep sec-glow">
     <div class="container-prose py-24 md:py-28">
       <SectionHeading
         eyebrow="A Legacy in Milestones"
@@ -257,7 +257,7 @@ const teamMembers = [
         {milestones.map((m, i) => (
           <li class="reveal-on-scroll relative flex gap-8 pb-10">
             <div class="flex flex-col items-center">
-              <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-burgundy-soft/70 bg-midnight-deep text-xs text-burgundy-bright" style="box-shadow:0 0 10px rgba(65,105,225,0.30)">
+              <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-burgundy-soft/70 bg-midnight-deep text-xs text-burgundy-bright blue-glow">
                 ◆
               </span>
               {i < milestones.length - 1 && (
@@ -275,7 +275,7 @@ const teamMembers = [
   </section>
 
   <!-- VALUES -->
-  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+  <section class="bg-obsidian sec-glow">
     <div class="container-prose py-24 md:py-28">
       <SectionHeading
         eyebrow="What We Stand For"
@@ -293,7 +293,7 @@ const teamMembers = [
   </section>
 
   <!-- CTA -->
-  <section class="bg-midnight-deep" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+  <section class="bg-midnight-deep sec-glow">
     <div class="container-prose flex flex-col items-center py-20 text-center md:py-24">
       <IceLogo variant="mark" size="md" glow={true} class="text-champagne reveal-on-scroll" />
       <p class="eyebrow mt-7 text-champagne">Based in Bali · Composing worldwide</p>

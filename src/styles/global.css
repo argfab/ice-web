@@ -1202,3 +1202,23 @@
     font-size: 0.75rem;
   }
 }
+
+/* Royal-blue accents — converted from inline styles to CSP-safe classes. */
+.sec-glow       { border-top: 1px solid rgba(65,105,225,0.18); box-shadow: 0 -1px 22px rgba(65,105,225,0.08); }
+.footer-glow    { border-top: 1px solid rgba(65,105,225,0.20); box-shadow: 0 -1px 28px rgba(65,105,225,0.08); }
+.sec-glow-y     { border-top: 1px solid rgba(65,105,225,0.18); border-bottom: 1px solid rgba(65,105,225,0.18); box-shadow: 0 -1px 22px rgba(65,105,225,0.08), 0 1px 22px rgba(65,105,225,0.06); }
+.blue-border    { border: 1px solid rgba(65,105,225,0.20); }
+.blue-border-2  { border: 1px solid rgba(65,105,225,0.35); }
+.blue-border-t  { border-top: 1px solid rgba(65,105,225,0.12); }
+.blue-border-b  { border-bottom: 1px solid rgba(65,105,225,0.10); }
+.blue-border-b2 { border-bottom: 1px solid rgba(65,105,225,0.18); }
+.blue-border-r  { border-right: 1px solid rgba(65,105,225,0.12); }
+.blue-border-l  { border-left: 2px solid rgba(65,105,225,0.35); }
+.blue-glow      { box-shadow: 0 0 10px rgba(65,105,225,0.30); }
+.blue-glow-dot  { box-shadow: 0 0 6px rgba(65,105,225,0.70); }
+.blue-text      { color: rgba(65,105,225,0.60); }
+
+/* DreamBuilder accent — driven by a --accent custom property set via the CSSOM (CSP-safe). */
+.accent-text { color: var(--accent, #D4B483); }
+.accent-bg   { background-color: var(--accent, #D4B483); }
+.accent-glow { background: radial-gradient(40% 40% at 80% 20%, var(--accent, #D4B483), transparent); }
