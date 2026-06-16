@@ -6,70 +6,119 @@ import Starfield from '../components/Starfield.astro';
 const movements = [
   {
     title: 'Dream',
-    body: 'It begins quietly — an application, your story, the feeling you want the day to hold. No obligation, only the start of a conversation.',
+    tagline: 'Imagine without limitations.',
+    body: 'It begins with an application and your story — the feeling you want the day to hold. No obligation, only the start of a conversation. We invest in understanding who you are before we begin creating anything.',
   },
   {
-    title: 'Vision',
-    body: 'If we are right for one another, we listen far more than we speak, and translate that feeling into a coherent world: place, narrative, light, and rhythm.',
+    title: 'Design',
+    tagline: 'Collaborate to bring your vision to life.',
+    body: 'If we are right for one another, we listen far more than we speak — and translate that feeling into a coherent world: place, narrative, light, rhythm, and aesthetic. Your Dream Builder canvas comes alive at this stage.',
   },
   {
-    title: 'Creation',
-    body: 'We design the whole and assemble the makers — artisans, performers, technicians — composing a thousand unseen details into one seamless vision.',
+    title: 'Create',
+    tagline: 'Transform ideas into extraordinary experiences.',
+    body: 'We design the whole and assemble the makers — artisans, performers, technicians, florists, and cinematographers — composing a thousand unseen details into one seamless, singular vision.',
   },
   {
-    title: 'Celebration',
-    body: 'The day itself. You carry nothing; a discreet team holds every thread, and a single point of contact remains yours throughout.',
+    title: 'Celebrate',
+    tagline: 'Experience every moment, knowing every detail has been managed.',
+    body: 'The day itself. You carry nothing; a discreet team holds every thread, and a single point of contact remains yours throughout. The day unfolds exactly as envisioned — effortless for you, unforgettable for everyone in it.',
   },
   {
-    title: 'Legacy',
-    body: 'What remains long after — the film, the memory, and a family story that begins here.',
+    title: 'Remember',
+    tagline: 'Create memories that will live on forever.',
+    body: 'What remains long after — the film, the photographs, the memories, and a family story that begins here. This is not simply another event. This is a moment that becomes a memory, and a memory that becomes a legacy.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Approach"
-  description="How ICE composes a celebration — five movements, from a private application to a lasting legacy."
+  title="Our Approach — The ICE Experience™ | Luxury Wedding Planner Bali"
+  description="How ICE Luxury Weddings composes a celebration — five movements, from a private application to a lasting legacy. Technology-driven, human-led, never templated."
 >
   <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
     <Starfield />
     <div class="container-prose py-28 md:py-36">
       <SectionHeading
         as="h1"
-        eyebrow="Approach"
+        eyebrow="The ICE Experience™ · Approach"
         title="A way of working, not a package."
-        intro="The finest celebrations are commissioned, not ordered. It asks more of us — and is the reason we accept only a limited number of celebrations each year."
+        intro="Our process has been carefully designed to remove stress while allowing creativity to flourish. The finest celebrations are commissioned, not ordered — and we accept only a limited number each year."
       />
     </div>
   </header>
 
   <section class="bg-obsidian">
     <div class="container-prose py-24 md:py-32">
-      <ol class="space-y-px overflow-hidden rounded-3xl border border-silver/10">
-        {
-          movements.map((m, i) => (
-            <li class="reveal-on-scroll grid gap-6 bg-midnight-deep/60 p-10 md:grid-cols-[auto_1fr] md:gap-12 md:p-12">
-              <p class="font-display text-6xl text-champagne/70">{String(i + 1).padStart(2, '0')}</p>
-              <div>
-                <h3 class="text-2xl text-crystal sm:text-3xl">{m.title}</h3>
-                <p class="mt-3 max-w-2xl leading-relaxed text-silver">{m.body}</p>
-              </div>
-            </li>
-          ))
-        }
+      <ol class="space-y-px overflow-hidden rounded-3xl" style="border:1px solid rgba(65,105,225,0.20);">
+        {movements.map((m, i) => (
+          <li class="approach-step reveal-on-scroll grid gap-6 bg-midnight-deep/60 p-10 md:grid-cols-[auto_1fr] md:gap-12 md:p-12" style="border-bottom:1px solid rgba(65,105,225,0.10);">
+            <p class="font-display text-6xl text-burgundy-bright/80">{String(i + 1).padStart(2, '0')}</p>
+            <div>
+              <h3 class="text-2xl text-crystal sm:text-3xl">{m.title}</h3>
+              <p class="mt-1 font-display text-base italic text-champagne">{m.tagline}</p>
+              <p class="mt-3 max-w-2xl leading-relaxed text-silver">{m.body}</p>
+            </div>
+          </li>
+        ))}
       </ol>
 
       <figure class="mx-auto mt-20 max-w-3xl text-center">
         <blockquote class="font-display text-3xl leading-snug text-crystal sm:text-4xl">
-          “There is a difference between a wedding that is organised and one that is composed. We
-          choose the second, always.”
+          "Our role is not to plan your wedding. Our role is to create a celebration that has never
+          existed before and will never be repeated again."
         </blockquote>
-        <figcaption class="eyebrow mt-6 text-silver-soft">Nicky, Founder &amp; Creative Director</figcaption>
+        <figcaption class="eyebrow mt-6 text-silver-soft">ICE Luxury Weddings &amp; Events</figcaption>
       </figure>
 
-      <div class="mt-16 text-center">
+      <div class="mt-16 flex flex-wrap items-center justify-center gap-4 text-center">
         <a href="/apply" class="btn-gold">Begin Your Journey</a>
+        <a href="/dream-builder" class="btn-outline">Explore Dream Builder →</a>
       </div>
+      <p class="mx-auto mt-10 max-w-lg text-center text-sm text-silver-soft">
+        Every step of this process is supported by our proprietary Dream Builder platform —
+        budget transparency, vendor management, and a private client portal from the very first session.
+      </p>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .approach-step {
+    position: relative;
+    overflow: hidden;
+    transition:
+      background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s ease;
+  }
+
+  .approach-step::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.07) 45%,
+      rgba(65, 105, 225, 0.11) 55%,
+      transparent 80%
+    );
+    transform: translateX(-110%);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .approach-step:hover::before {
+    transform: translateX(110%);
+  }
+
+  .approach-step:hover {
+    background: rgba(27, 58, 140, 0.18);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      inset 0 0 40px rgba(65, 105, 225, 0.07),
+      0 0 30px rgba(65, 105, 225, 0.10);
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import IceMark from '../components/IceMark.astro';
+import IceLogo from '../components/IceLogo.astro';
 import Starfield from '../components/Starfield.astro';
 ---
 
@@ -11,7 +11,7 @@ import Starfield from '../components/Starfield.astro';
   <section class="relative isolate flex min-h-[85vh] items-center overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
     <Starfield />
     <div class="container-prose max-w-3xl py-24 text-center">
-      <IceMark class="mx-auto h-16 w-16 text-champagne" />
+      <IceLogo variant="mark" size="md" glow={true} class="mx-auto text-champagne" />
       <p class="eyebrow mt-8">Application received</p>
       <div class="rule mx-auto mt-6" aria-hidden="true"></div>
       <h1 class="mt-8 text-balance text-4xl leading-tight text-crystal sm:text-5xl">

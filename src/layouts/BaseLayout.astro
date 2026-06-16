@@ -45,11 +45,71 @@ const ogImage = new URL('/og-cover.png', Astro.site ?? Astro.url).href;
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="robots" content="index, follow" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://iceluxuryweddings.com/#business",
+            "name": "ICE Luxury Weddings & Events",
+            "description": "Bali's premier luxury wedding architecture studio. Destination weddings, Indian weddings, multi-day celebrations, corporate events, and proposal planning. 30+ years of experience.",
+            "url": "https://iceluxuryweddings.com",
+            "telephone": "+62-000-000-0000",
+            "email": "hello@iceluxuryweddings.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bali",
+              "addressCountry": "ID"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "-8.3405",
+              "longitude": "115.0920"
+            },
+            "priceRange": "$$$$$",
+            "servesCuisine": null,
+            "areaServed": [
+              "Bali", "Indonesia", "Worldwide"
+            ],
+            "knowsAbout": [
+              "Luxury Wedding Planning Bali",
+              "Destination Wedding Bali",
+              "Indian Weddings Bali",
+              "Private Estate Weddings Bali",
+              "Corporate Events Bali",
+              "Proposal Planning Bali",
+              "Multi-Day Wedding Experiences",
+              "Bespoke Wedding Design"
+            ],
+            "foundingDate": "1991",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": 5
+            },
+            "sameAs": []
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://iceluxuryweddings.com/#website",
+            "url": "https://iceluxuryweddings.com",
+            "name": "ICE Luxury Weddings & Events",
+            "description": "Bali-based luxury wedding architecture studio",
+            "publisher": { "@id": "https://iceluxuryweddings.com/#business" }
+          }
+        ]
+      }
+    </script>
     <ClientRouter />
     <script>
       import '../scripts/reveal';
       import '../scripts/pointer';
       import '../scripts/nav';
+      import '../scripts/counter';
+      import '../scripts/scrollprogress';
+      import '../scripts/parallax';
+      import '../scripts/magnetic';
     </script>
   </head>
   <body class="bg-obsidian">
@@ -59,6 +119,7 @@ const ogImage = new URL('/og-cover.png', Astro.site ?? Astro.url).href;
     >
       Skip to content
     </a>
+    <div id="scroll-progress" aria-hidden="true"></div>
     <Nav variant={navVariant} />
     <main id="main">
       <slot />

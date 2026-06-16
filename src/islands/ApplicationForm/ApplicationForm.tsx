@@ -8,6 +8,11 @@ import {
 import { Honeypot, RadioCards, TextArea, TextField } from './fields';
 import { useApplicationForm } from './useApplicationForm';
 import type { GuestCount, InvestmentTier } from './types';
+import {
+  buildStory,
+  LOCATION_DESTINATION,
+} from '../DreamWizard/wizardConfig';
+import type { WizardSelections } from '../DreamWizard/wizardConfig';
 
 export default function ApplicationForm() {
   const f = useApplicationForm();
@@ -17,6 +22,35 @@ export default function ApplicationForm() {
   useEffect(() => {
     headingRef.current?.focus();
   }, [f.step]);
+
+  // Pre-fill from Dream Builder wizard URL params on mount.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('via') !== 'dream-builder') return;
+
+    const selections: WizardSelections = {
+      type: params.get('type') ?? '',
+      location: params.get('loc') ?? '',
+      style: params.get('style') ?? '',
+      guests: params.get('guests') ?? '',
+      timeline: params.get('when') ?? '',
+    };
+
+    if (!f.values.story) {
+      f.setField('story', buildStory(selections));
+    }
+
+    const dest = LOCATION_DESTINATION[selections.location] ?? '';
+    if (!f.values.destination && dest) {
+      f.setField('destination', dest);
+    }
+
+    const validGuests = ['intimate', 'considered', 'grand', 'world'];
+    if (!f.values.guestCount && validGuests.includes(selections.guests)) {
+      f.setField('guestCount', selections.guests as GuestCount);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const current = STEPS[f.step];
   const isLast = f.step === f.lastStep;

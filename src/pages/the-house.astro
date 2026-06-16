@@ -3,94 +3,357 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import PlaceholderImage from '../components/PlaceholderImage.astro';
 import Starfield from '../components/Starfield.astro';
+import IceLogo from '../components/IceLogo.astro';
+import TeamGrid from '../islands/TeamGrid/TeamGrid.tsx';
 
-const founders = [
+const milestones = [
+  { year: '1991', event: "Nicky begins composing celebrations — a reputation built entirely on referral and an unwavering commitment to excellence." },
+  { year: '2005', event: "First destination weddings in Bali. The island becomes a second home. Thirty years of insider relationships begin." },
+  { year: '2012', event: "Recognised in Forbes, Vogue Bride, and Tatler as a standard-bearer for destination celebrations and bespoke luxury experiences." },
+  { year: '2019', event: "Tayne steps in and together with Nicky co-founds ICE. The Dream Builder platform begins development and a shared vision takes shape." },
+  { year: '2023', event: "ICE launches as Bali's first technology-powered luxury wedding architecture studio — built on family values and a shared obsession with the extraordinary." },
+  { year: 'Today', event: "Composing the world's most extraordinary celebrations — by application only. Legacy and innovation, in one house." },
+];
+
+const values = [
   {
-    name: 'Nicky',
-    role: 'Founder & Creative Director',
-    bio: 'Thirty-four years composing the world’s most extraordinary celebrations. The face of the house and the eye behind every ICE commission — featured in Forbes, Vogue Bride, and Tatler. Her gift is not logistics; it is seeing the celebration a couple cannot yet picture, and then building it.',
+    title: 'Discretion',
+    body: 'Much of our work is never published. The confidence of every couple is held absolutely — always.',
   },
   {
-    name: 'Tayne',
-    role: 'Visionary & Director of Innovation',
-    bio: 'The son. The entrepreneur reimagining a storied atelier as a modern luxury experience — pairing his mother’s instinct with technology, transparency, and a relentless forward vision. He ensures ICE is always a step ahead, without losing an ounce of soul.',
+    title: 'Obsession',
+    body: 'Not with perfection — with the specific detail that transforms a beautiful day into an unforgettable one.',
+  },
+  {
+    title: 'Trust',
+    body: 'Built over thirty years and one couple at a time. It is the only reputation we care to have.',
+  },
+  {
+    title: 'Transparency',
+    body: 'No hidden costs. No surprises. No ambiguity. You always know exactly where things stand.',
+  },
+];
+
+const teamMembers = [
+  {
+    name: 'Yuvi',
+    role: 'Junior Planner',
+    initial: 'Y',
+    image: '', // ← paste Yuvi's photo URL here
+    caption: 'The planner who holds your wedding as much as she plans it.',
+    bio: "She has been called the calmest person in any room on any wedding day — and those who have worked with her know exactly why. Yuvi carries a rare combination of quiet precision and extraordinary warmth. Behind every seamless timeline, every vendor who arrived exactly when they should have, every small crisis averted before anyone even sensed it — there is Yuvi, working with a focus and a devotion that you will feel long before you ever see the results. She does not just plan your wedding. She holds it.",
+  },
+  {
+    name: 'Luthfi',
+    role: 'Production Manager',
+    initial: 'L',
+    image: '', // ← paste Luthfi's photo URL here
+    caption: 'The backbone behind every moment that looks effortless.',
+    bio: "Every extraordinary celebration has a backbone. Luthfi is ICE's. From the moment a vision leaves the design room to the moment the final lantern is lifted from the sky, Luthfi orchestrates the world behind the scenes with a calm authority that inspires confidence in every artisan, every technician, every person on site. He does not simply manage production — he transforms logistical complexity into invisible poetry. The extraordinary, in his hands, looks exactly like it was always the plan.",
+  },
+  {
+    name: 'Cetta',
+    role: 'Bridal Concierge',
+    initial: 'C',
+    image: '', // ← paste Cetta's photo URL here
+    caption: 'The presence who ensures you feel nothing but joy, from first light to last dance.',
+    bio: "There are people who understand what it truly means to be a bride — not just the logistics, not just the schedule, but the emotional weight of the day, the way time moves differently, the small moments that quietly become the ones you carry forever. Cetta is one of those people. From the stillness of the morning to the last song of the night, she is the warm, steady presence at your side — anticipating what you need before you need it, holding what you should never have to see, and ensuring that on this day, of all days, you feel nothing but the full beauty of exactly where you are. The couples who have had her beside them will tell you she is irreplaceable. We already knew.",
+  },
+  {
+    name: 'Devereaux',
+    role: 'Head of Technology',
+    initial: 'D',
+    image: '', // ← paste Devereaux's photo URL here
+    caption: 'The mind that built the platform keeping ICE ten years ahead.',
+    bio: "Behind the elegance of every ICE client experience lives a remarkable intelligence — and Devereaux built it. As the architect of the Dream Builder platform, he is the reason couples feel certainty instead of confusion, and ease instead of overwhelm throughout their entire planning journey. Technology, in his hands, becomes invisible — felt only as quiet confidence, seamless clarity, and the reassurance that every detail is precisely where it belongs. He is the reason ICE is ten years ahead of the world it operates in.",
+  },
+  {
+    name: 'Michele',
+    role: 'Head of Sales',
+    initial: 'M',
+    image: '', // ← paste Michele's photo URL here
+    caption: 'The first voice you hear — and the reason you say yes.',
+    bio: "Michele is the first voice you hear — and the reason so many couples say yes before they fully understand why. She possesses a gift that cannot be trained: the ability to listen not just to what a couple wants, but to what they are truly hoping to feel, and to reflect it back with such clarity that the path forward becomes undeniable. She does not sell weddings. She recognises visions. She hears the dream underneath the words. And then she begins the conversation that quietly changes everything.",
   },
 ];
 ---
 
 <BaseLayout
-  title="The House"
-  description="ICE Luxury Weddings & Events — a mother-and-son house pairing thirty-four years of legacy with modern innovation."
+  title="The House — Nicky Almeida & Tayne de Villiers | ICE Luxury Weddings Bali"
+  description="ICE Luxury Weddings & Events — founded by Nicky Almeida and Tayne de Villiers. A mother-and-son house pairing 30+ years of legacy with modern innovation, technology, and a shared obsession with extraordinary celebrations in Bali and worldwide."
 >
+
+  <!-- HERO -->
   <header class="relative isolate overflow-hidden bg-obsidian">
     <img
       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/ddd547f76_IMG_1269.jpg"
       alt=""
       aria-hidden="true"
-      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-20"
+      width="1920"
+      height="1080"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-15"
     />
-    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/88 via-midnight-deep/82 to-obsidian/95"></div>
+    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/90 via-midnight-deep/85 to-obsidian"></div>
     <Starfield />
     <div class="container-prose py-28 md:py-36">
       <SectionHeading
         as="h1"
-        eyebrow="The House"
+        eyebrow="The House · Legacy · Innovation · Technology"
         title="A mother, a son, and a shared obsession with the extraordinary."
-        intro="ICE is the meeting of two forces — thirty-four years of legacy, and a modern vision for what a luxury celebration can be."
+        intro="ICE is the meeting of two forces — over thirty years of legacy, a bold creative vision, and the most advanced wedding planning technology in the world."
       />
     </div>
   </header>
 
-  <!-- The legacy story -->
+  <!-- ORIGIN STORY -->
   <section class="bg-midnight-deep">
     <div class="container-prose grid gap-16 py-24 md:grid-cols-2 md:py-32">
       <div class="space-y-6 text-lg leading-relaxed text-silver reveal-on-scroll">
         <p>
-          It began with a mother. For more than three decades, Nicky earned a reputation among those
-          who could choose anyone — for taste, for discretion, and for turning a dream described in
-          a single sentence into a world no one could forget.
+          Every extraordinary story has a beginning.
         </p>
         <p>
-          Then came her son. Tayne saw what his mother had built and asked a simple question: what
-          if this legacy could be carried further — made more transparent, more considered, more
-          alive — without losing the human touch that made it matter?
+          For over three decades, <span class="text-crystal">Nicky Almeida</span> helped couples celebrate
+          life's most important milestones — earning a reputation as one of Bali's most respected and
+          trusted wedding professionals. What began as a passion evolved into something much greater.
         </p>
         <p>
-          Together they founded <span class="text-crystal">ICE Luxury Weddings &amp; Events</span>:
-          legacy and innovation, experience and technology, trust and creativity — one house.
+          Together, mother and son united <span class="text-crystal">experience, creativity, innovation,
+          and vision</span> to establish ICE Luxury Weddings &amp; Events. A company built on family
+          values, genuine relationships, and a shared commitment to creating extraordinary celebrations.
+        </p>
+        <p>
+          Today, that legacy continues to evolve through a new generation of innovation — while remaining
+          grounded in the principles that built its foundation.
         </p>
       </div>
-      <figure class="reveal-on-scroll self-center border-l border-champagne/40 pl-8">
+      <figure class="reveal-on-scroll self-center border-l border-burgundy-soft/50 pl-8">
         <blockquote class="font-display text-3xl leading-snug text-crystal sm:text-4xl">
-          “We are not measured by what we add, but by what you never have to think about.”
+          "We are not measured by what we add, but by what you never have to think about."
         </blockquote>
-        <figcaption class="eyebrow mt-6 text-silver-soft">Nicky, Founder &amp; Creative Director</figcaption>
+        <figcaption class="eyebrow mt-6 text-silver-soft">Nicky Almeida · Founder &amp; Creative Director</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- Founders -->
-  <section class="bg-obsidian">
-    <div class="container-prose grid gap-12 py-24 md:grid-cols-2 md:py-32">
-      {
-        founders.map((f) => (
-          <article class="reveal-on-scroll">
-            <PlaceholderImage ratio="aspect-[3/4]" label="Portrait to follow" />
-            <h2 class="mt-7 text-3xl text-crystal">{f.name}</h2>
-            <p class="mt-1 font-display text-lg italic text-champagne">{f.role}</p>
-            <p class="mt-4 leading-relaxed text-silver">{f.bio}</p>
-          </article>
-        ))
-      }
+  <!-- THREE PILLARS -->
+  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);border-bottom:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08),0 1px 22px rgba(65,105,225,0.06);">
+    <div class="container-prose py-20 md:py-24">
+      <dl class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-silver/10 sm:grid-cols-3">
+        <div class="flex flex-col gap-3 bg-midnight-deep/60 p-10" style="border-right:1px solid rgba(65,105,225,0.12)">
+          <dt class="eyebrow text-champagne">Legacy</dt>
+          <dd class="font-display text-5xl text-burgundy-bright">30+</dd>
+          <p class="text-sm leading-relaxed text-silver">Years composing extraordinary celebrations across four continents.</p>
+        </div>
+        <div class="flex flex-col gap-3 bg-midnight-deep/60 p-10" style="border-right:1px solid rgba(65,105,225,0.12)">
+          <dt class="eyebrow text-champagne">Innovation</dt>
+          <dd class="font-display text-3xl text-burgundy-bright leading-tight">Creative Vision</dd>
+          <p class="text-sm leading-relaxed text-silver">Future-focused design intelligence paired with generational instinct.</p>
+        </div>
+        <div class="flex flex-col gap-3 bg-midnight-deep/60 p-10">
+          <dt class="eyebrow text-champagne">Technology</dt>
+          <dd class="font-display text-3xl text-burgundy-bright leading-tight">Dream Builder</dd>
+          <p class="text-sm leading-relaxed text-silver">The world's most advanced luxury wedding planning platform.</p>
+        </div>
+      </dl>
     </div>
   </section>
 
-  <section class="border-t border-silver/10 bg-midnight-deep">
-    <div class="container-prose py-20 text-center">
-      <p class="mx-auto max-w-2xl text-balance text-xl leading-relaxed text-crystal">
-        Composed from our home in Bali, for couples across the world.
-      </p>
-      <a href="/apply" class="btn-gold mt-8">Begin Your Journey</a>
+  <!-- FOUNDERS -->
+  <section class="bg-midnight-deep">
+    <div class="container-prose py-24 md:py-32">
+      <SectionHeading
+        eyebrow="Two Generations · One Vision"
+        title="The people behind the house."
+      />
+      <div class="mt-16 grid gap-16 md:grid-cols-2">
+
+        <!-- Nicky -->
+        <article class="reveal-on-scroll">
+          <PlaceholderImage ratio="aspect-[3/4]" label="Nicky Almeida · Portrait to follow" />
+          <p class="eyebrow mt-6 text-champagne">The Heart. The Legacy. The Experience.</p>
+          <h2 class="mt-3 text-3xl text-crystal">Nicky Almeida</h2>
+          <p class="mt-1 font-display text-lg italic text-champagne">Founder &amp; Creative Director</p>
+          <div class="mt-5 space-y-4 leading-relaxed text-silver">
+            <p>
+              For more than 30 years, Nicky has dedicated her life to helping couples celebrate love,
+              connection, family, and life's most meaningful milestones. Celebrated in international
+              bridal publications and recognised for her bespoke approach to destination weddings,
+              Nicky has become synonymous with trust, excellence, and timeless elegance.
+            </p>
+            <p>
+              Her signature lies in creating refined, elegant weddings and events with heart — where
+              every detail is intentional, every setting breathtaking, and every moment deeply personal.
+            </p>
+            <p>
+              Her passion, attention to detail, and unwavering commitment have shaped thousands of
+              unforgettable celebrations.
+            </p>
+          </div>
+          <figure class="mt-8 border-l border-burgundy-soft/45 pl-5">
+            <blockquote class="font-display text-lg leading-snug text-crystal">
+              "We are not measured by what we add, but by what you never have to think about."
+            </blockquote>
+          </figure>
+        </article>
+
+        <!-- Tayne -->
+        <article class="reveal-on-scroll">
+          <PlaceholderImage ratio="aspect-[3/4]" label="Tayne de Villiers · Portrait to follow" />
+          <p class="eyebrow mt-6 text-champagne">The Future. The Innovation. The Vision.</p>
+          <h2 class="mt-3 text-3xl text-crystal">Tayne de Villiers</h2>
+          <p class="mt-1 font-display text-lg italic text-champagne">Founder & Director of Innovation</p>
+          <div class="mt-5 space-y-4 leading-relaxed text-silver">
+            <p>
+              Tayne brings a bold and modern approach to luxury celebrations — combining creativity,
+              technology, branding, and experience design to push boundaries and redefine what is
+              possible in the world of luxury weddings and events.
+            </p>
+            <p>
+              Driven by innovation and a passion for creating extraordinary experiences, he continues
+              to evolve the family legacy into a globally recognised luxury wedding and event brand.
+            </p>
+            <p>
+              Together with Nicky, they are shaping the future of luxury celebrations — ensuring ICE
+              is always a step ahead, without losing an ounce of soul.
+            </p>
+          </div>
+          <figure class="mt-8 border-l border-burgundy-soft/45 pl-5">
+            <blockquote class="font-display text-lg leading-snug text-crystal">
+              "Technology here is quiet — it exists only to make the extraordinary feel effortless."
+            </blockquote>
+          </figure>
+        </article>
+
+      </div>
     </div>
   </section>
+
+  <!-- THE TEAM -->
+  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+    <div class="container-prose py-24 md:py-32">
+      <SectionHeading
+        eyebrow="The Heartbeat of ICE"
+        title="The people who make the extraordinary feel effortless."
+        intro="ICE is not one person. It is a house — built of individuals who chose this work not because it was a career, but because they could not imagine doing anything else. Every person here was chosen for something that cannot be listed on a résumé."
+      />
+
+      <TeamGrid members={teamMembers} client:visible />
+
+      <p class="mt-14 text-center text-sm italic text-silver-soft">
+        Together, we are more than a team. We are the quiet force behind every extraordinary celebration. We are ICE.
+      </p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="bg-midnight-deep" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+    <div class="container-prose py-24 md:py-28">
+      <SectionHeading
+        eyebrow="A Legacy in Milestones"
+        title="Thirty years. One standard."
+      />
+      <ol class="timeline-line mt-14">
+        {milestones.map((m, i) => (
+          <li class="reveal-on-scroll relative flex gap-8 pb-10">
+            <div class="flex flex-col items-center">
+              <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-burgundy-soft/70 bg-midnight-deep text-xs text-burgundy-bright" style="box-shadow:0 0 10px rgba(65,105,225,0.30)">
+                ◆
+              </span>
+              {i < milestones.length - 1 && (
+                <span class="mt-2 h-full min-h-[2rem] w-px bg-gradient-to-b from-burgundy-bright/50 to-burgundy-bright/05" aria-hidden="true"></span>
+              )}
+            </div>
+            <div class="pb-2 pt-0">
+              <p class="eyebrow text-champagne">{m.year}</p>
+              <p class="mt-2 max-w-xl leading-relaxed text-silver">{m.event}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="bg-obsidian" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+    <div class="container-prose py-24 md:py-28">
+      <SectionHeading
+        eyebrow="What We Stand For"
+        title="The values behind every ICE commission."
+      />
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+        {values.map((v) => (
+          <div class="value-card glass-card reveal-on-scroll p-7">
+            <h3 class="text-lg text-champagne">{v.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-silver">{v.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-midnight-deep" style="border-top:1px solid rgba(65,105,225,0.18);box-shadow:0 -1px 22px rgba(65,105,225,0.08);">
+    <div class="container-prose flex flex-col items-center py-20 text-center md:py-24">
+      <IceLogo variant="mark" size="md" glow={true} class="text-champagne reveal-on-scroll" />
+      <p class="eyebrow mt-7 text-champagne">Based in Bali · Composing worldwide</p>
+      <p class="mx-auto mt-4 max-w-xl text-balance text-xl leading-relaxed text-crystal">
+        Two generations united by one purpose: creating moments and memories that matter — not only
+        for today, but for generations to come.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a href="/apply" class="btn-gold sheen">Begin Your Journey</a>
+        <a href="/dream-builder" class="btn-outline">Explore Dream Builder</a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  .value-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition:
+      background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .value-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.07) 45%,
+      rgba(65, 105, 225, 0.11) 55%,
+      transparent 80%
+    );
+    transform: translateX(-110%);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .value-card:hover::before {
+    transform: translateX(110%);
+  }
+  .value-card:hover {
+    background: rgba(27, 58, 140, 0.16);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-color: rgba(65, 105, 225, 0.40);
+    box-shadow:
+      0 0 35px rgba(65, 105, 225, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    transform: translateY(-4px);
+  }
+  .value-card:hover h3 {
+    text-shadow: 0 0 18px rgba(199, 174, 123, 0.40);
+  }
+  .value-card:hover p {
+    color: #F4F0EB;
+  }
+</style>

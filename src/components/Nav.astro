@@ -1,6 +1,5 @@
 ---
-import IceMark from './IceMark.astro';
-import IceWordmark from './IceWordmark.astro';
+import IceLogo from './IceLogo.astro';
 
 interface Props {
   variant?: 'solid' | 'overlay';
@@ -11,24 +10,23 @@ const links = [
   { href: '/the-house', label: 'The House' },
   { href: '/experiences', label: 'Experiences' },
   { href: '/destinations', label: 'Destinations' },
+  { href: '/dream-builder', label: 'Dream Builder' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/approach', label: 'Approach' },
-  { href: '/recognition', label: 'Recognition' },
 ];
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isOverlay = variant === 'overlay';
 
 const wrapClass = isOverlay
-  ? 'absolute inset-x-0 top-0 z-40'
+  ? 'fixed inset-x-0 top-0 z-40 nav-overlay'
   : 'sticky top-0 z-40 border-b border-silver/10 bg-obsidian/80 backdrop-blur-xl';
 ---
 
-<header class={wrapClass}>
+<header class={wrapClass} data-overlay={isOverlay || undefined}>
   <nav class="container-prose flex items-center justify-between py-5" aria-label="Primary">
-    <a href="/" class="flex items-center gap-3 text-crystal" aria-label="ICE — home">
-      <IceMark class="h-8 w-8 text-champagne" />
-      <IceWordmark class="text-xl" sub={false} />
+    <a href="/" class="text-crystal" aria-label="ICE Luxury Weddings & Events — home">
+      <IceLogo variant="mark" animate={false} />
     </a>
 
     <!-- Desktop -->
@@ -38,7 +36,7 @@ const wrapClass = isOverlay
           <li>
             <a
               href={l.href}
-              class="link-underline font-sans text-sm text-silver hover:text-crystal"
+              class="nav-link link-underline font-sans text-sm text-silver hover:text-crystal"
               aria-current={path === l.href ? 'page' : undefined}
             >
               {l.label}
@@ -79,3 +77,27 @@ const wrapClass = isOverlay
     </details>
   </nav>
 </header>
+
+<style>
+  /* Royal blue hover glow on desktop nav links */
+  .nav-link {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .nav-link:hover {
+    text-shadow:
+      0 0 12px rgba(65, 105, 225, 0.70),
+      0 0 28px rgba(27, 58, 140, 0.45);
+  }
+  /* Underline switches to royal blue */
+  .nav-link::after {
+    background-color: rgba(65, 105, 225, 0.80) !important;
+    height: 1.5px !important;
+  }
+  /* Active page indicator — persistent blue glow */
+  [aria-current="page"].nav-link {
+    color: #F4F0EB;
+    text-shadow:
+      0 0 10px rgba(65, 105, 225, 0.55),
+      0 0 22px rgba(27, 58, 140, 0.35);
+  }
+</style>

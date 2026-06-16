@@ -1,0 +1,231 @@
+---
+/**
+ * IceLogo — the geometric ICE brand mark + wordmark, fully animated.
+ *
+ * variant="nav"   → compact horizontal: mark (small) + "ICE" text beside it
+ * variant="full"  → stacked: mark (larger) + full wordmark below
+ * variant="mark"  → geometric mark only, no wordmark
+ *
+ * animate={true}  → entrance animation (each piece assembles in sequence)
+ */
+
+interface Props {
+  variant?: 'nav' | 'full' | 'mark';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+  animate?: boolean;
+  glow?: boolean;
+}
+
+const {
+  variant = 'full',
+  size,
+  class: className = '',
+  animate = true,
+  glow = false,
+} = Astro.props;
+
+// Resolve default size per variant unless explicitly set
+const resolvedSize = size ?? (variant === 'nav' || variant === 'mark' ? 'xs' : 'md');
+---
+
+<span class:list={['ice-logo-wrap', `ice-logo-${resolvedSize}`, variant === 'nav' && 'ice-logo-nav', animate && 'ice-logo-anim', glow && 'ice-logo-glow', className]}>
+  <!-- Geometric mark — 5 pieces that form the ICE brand symbol -->
+  <svg
+    viewBox="0 0 300 340"
+    fill="currentColor"
+    aria-hidden="true"
+    class="ice-logo-svg"
+  >
+    <defs>
+      <!-- Glass highlight gradient — diagonal top-left catch to bottom-right fade -->
+      <linearGradient id="ice-glass-light" x1="0%" y1="0%" x2="70%" y2="100%">
+        <stop offset="0%"   stop-color="#ffffff" stop-opacity="1.00"/>
+        <stop offset="18%"  stop-color="#eef4ff" stop-opacity="0.75"/>
+        <stop offset="48%"  stop-color="#c8daff" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Row 1: I-shape (two blocks) -->
+    <rect class="logo-piece logo-sq" x="0"   y="0" width="76" height="80" rx="7"/>
+    <rect class="logo-piece logo-bar" x="96"  y="0" width="204" height="80" rx="7"/>
+
+    <!-- C bracket (3 pieces that merge into one open bracket) -->
+    <rect class="logo-piece logo-c-top" x="0"  y="112" width="300" height="80" rx="7"/>
+    <rect class="logo-piece logo-c-mid" x="0"  y="112" width="76"  height="228" rx="7"/>
+    <rect class="logo-piece logo-c-bot" x="0"  y="260" width="300" height="80" rx="7"/>
+
+    <!-- Glass shimmer overlay — same shapes, gradient fill, opacity-animated -->
+    <g class="logo-glass">
+      <rect x="0"   y="0"   width="76"  height="80"  rx="7" fill="url(#ice-glass-light)"/>
+      <rect x="96"  y="0"   width="204" height="80"  rx="7" fill="url(#ice-glass-light)"/>
+      <rect x="0"   y="112" width="300" height="80"  rx="7" fill="url(#ice-glass-light)"/>
+      <rect x="0"   y="112" width="76"  height="228" rx="7" fill="url(#ice-glass-light)"/>
+      <rect x="0"   y="260" width="300" height="80"  rx="7" fill="url(#ice-glass-light)"/>
+    </g>
+  </svg>
+
+  <!-- Wordmark -->
+  {variant === 'full' && (
+    <span class="logo-wordmark logo-wordmark-full">
+      ICE Luxury Wedding &amp; Events
+    </span>
+  )}
+  {variant === 'nav' && (
+    <span class="logo-wordmark logo-wordmark-nav">
+      ICE
+    </span>
+  )}
+</span>
+
+<style>
+  /* ── Shell ───────────────────────────────────────────────────────────────── */
+  .ice-logo-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    color: currentColor;
+    text-decoration: none;
+  }
+
+  .ice-logo-nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* ── SVG sizing ──────────────────────────────────────────────────────────── */
+  .ice-logo-svg {
+    display: block;
+    width: auto;
+  }
+
+  .ice-logo-xs .ice-logo-svg { height: 1.625rem; } /* 26px — crisp nav mark */
+  .ice-logo-sm .ice-logo-svg { height: 2.5rem;   } /* 40px */
+  .ice-logo-md .ice-logo-svg { height: 4.5rem;   } /* 72px — footer/CTA */
+  .ice-logo-lg .ice-logo-svg { height: 6rem;     } /* 96px */
+  .ice-logo-xl .ice-logo-svg { height: 9rem;     } /* 144px — hero centrepiece */
+
+  /* ── Wordmark ────────────────────────────────────────────────────────────── */
+  .logo-wordmark {
+    font-family: var(--font-sans, sans-serif);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: currentColor;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .logo-wordmark-full {
+    font-size: 0.6rem;
+    opacity: 0.75;
+  }
+
+  .logo-wordmark-nav {
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    opacity: 1;
+  }
+
+  /* ── Section-logo blue glow — contained halo + drop-shadow ─────────────── */
+  .ice-logo-glow {
+    position: relative;
+    filter:
+      drop-shadow(0 0 12px rgba(65, 105, 225, 0.55))
+      drop-shadow(0 0 28px rgba(27, 58, 140, 0.30));
+  }
+  .ice-logo-glow::before {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(65, 105, 225, 0.70) 0%,
+      rgba(27, 58, 140, 0.35) 45%,
+      transparent 72%
+    );
+    filter: blur(16px);
+    animation: inner-glow-pulse 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* ── Glass shimmer — breathes in and out, GPU-smooth opacity only ────────── */
+  @keyframes logo-glass-breathe {
+    0%, 100% { opacity: 0.20; }
+    50%       { opacity: 1.00; }
+  }
+  .logo-glass {
+    animation: logo-glass-breathe 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* ── Piece defaults: smooth transitions for hover ────────────────────────── */
+  .logo-piece {
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.45s ease;
+    will-change: transform;
+  }
+
+  /* ── Hover ───────────────────────────────────────────────────────────────── */
+  /* Top two pieces separate slightly */
+  .ice-logo-wrap:hover .logo-sq  { transform: translateX(-3px); }
+  .ice-logo-wrap:hover .logo-bar { transform: translateX(3px);  }
+
+  /* C bracket gets a warm gold glow */
+  .ice-logo-wrap:hover .logo-c-top,
+  .ice-logo-wrap:hover .logo-c-bot {
+    filter: drop-shadow(0 0 10px rgba(199, 174, 123, 0.50));
+  }
+  .ice-logo-wrap:hover .logo-c-mid {
+    filter: drop-shadow(0 0 6px rgba(199, 174, 123, 0.34));
+  }
+
+  /* ── Entrance animation (added via .ice-logo-anim) ───────────────────────── */
+  .ice-logo-anim .logo-sq    { animation: logo-sq-in   0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
+  .ice-logo-anim .logo-bar   { animation: logo-bar-in  0.6s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+  .ice-logo-anim .logo-c-top { animation: logo-top-in  0.6s cubic-bezier(0.16,1,0.3,1) 0.25s both; }
+  .ice-logo-anim .logo-c-mid { animation: logo-mid-in  0.6s cubic-bezier(0.16,1,0.3,1) 0.30s both; }
+  .ice-logo-anim .logo-c-bot { animation: logo-bot-in  0.6s cubic-bezier(0.16,1,0.3,1) 0.38s both; }
+  .ice-logo-anim .logo-wordmark { animation: logo-word-in 0.5s ease 0.55s both; }
+
+  @keyframes logo-sq-in {
+    from { opacity: 0; transform: translateX(-14px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes logo-bar-in {
+    from { opacity: 0; transform: translateX(14px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes logo-top-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes logo-mid-in {
+    from { opacity: 0; transform: scaleY(0); transform-origin: top center; }
+    to   { opacity: 1; transform: scaleY(1); }
+  }
+  @keyframes logo-bot-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes logo-word-in {
+    from { opacity: 0; letter-spacing: 0.32em; }
+    to   { opacity: 0.75; letter-spacing: 0.18em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ice-logo-anim .logo-sq,
+    .ice-logo-anim .logo-bar,
+    .ice-logo-anim .logo-c-top,
+    .ice-logo-anim .logo-c-mid,
+    .ice-logo-anim .logo-c-bot,
+    .ice-logo-anim .logo-wordmark { animation: none; }
+    .logo-piece { transition: none; }
+  }
+</style>

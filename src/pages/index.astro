@@ -1,44 +1,130 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import OpeningSequence from '../components/OpeningSequence.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import GlassCard from '../components/GlassCard.astro';
 import Chapter from '../components/Chapter.astro';
 import ConstellationNode from '../components/ConstellationNode.astro';
-import IceMark from '../components/IceMark.astro';
+import IceLogo from '../components/IceLogo.astro';
 import ParticleField from '../islands/ParticleField/ParticleField.tsx';
 import StarTrail from '../islands/StarTrail/StarTrail.tsx';
 
 const press = (await getCollection('press')).sort((a, b) => a.data.order - b.data.order);
 
+function pressClass(outlet: string): string {
+  const name = outlet.toLowerCase();
+  if (name.includes('vogue'))  return 'press-vogue';
+  if (name.includes('forbes')) return 'press-forbes';
+  if (name.includes('tatler')) return 'press-tatler';
+  return 'press-default';
+}
+
 const pillars = [
   {
-    title: 'Architects of Emotion',
-    body: 'We do not plan events. We design how a day will feel — and build a world to hold it.',
+    numeral: '01',
+    eyebrow: 'Legacy',
+    title: 'Thirty Years of Trust',
+    body: "For over 30 years, Nicky has helped couples celebrate life's most important milestones — earning a reputation as one of Bali's most respected and trusted wedding professionals.",
+    accent: 'NICKY ALMEIDA · FOUNDER',
   },
   {
-    title: 'Experience Designers',
-    body: 'Every sense considered: light, sound, scent, taste, motion. Nothing left to a template.',
+    numeral: '02',
+    eyebrow: 'Innovation',
+    title: 'A Bold Creative Vision',
+    body: 'Tayne brings a bold and modern approach to luxury celebrations — combining creativity, technology, branding, and experience design to push boundaries and redefine what is possible.',
+    accent: 'TAYNE DE VILLIERS · DIRECTOR',
   },
   {
-    title: 'Dream Builders',
-    body: 'Your celebration begins as a blank canvas. We don’t follow trends — we set them.',
+    numeral: '03',
+    eyebrow: 'Technology',
+    title: 'The Dream Builder',
+    body: 'Our proprietary wedding planning ecosystem gives you complete transparency, visibility, and control throughout your planning journey — while maintaining an exceptional luxury experience.',
+    accent: 'PROPRIETARY PLATFORM',
   },
+];
+
+const stats = [
+  { value: 30, suffix: '+', label: 'Years of Excellence' },
+  { value: 1500, suffix: '+', label: 'Celebrations Created' },
+  { value: 15, suffix: '+', label: 'Countries Served' },
+  { value: 4, suffix: '', label: 'Continents' },
 ];
 
 const chapters = [
-  { numeral: 'I', title: 'Dream', line: 'It begins with a feeling — a life imagined, not a date to fill.' },
-  { numeral: 'II', title: 'Vision', line: 'We translate that feeling into a world: place, light, sound, and story.' },
-  { numeral: 'III', title: 'Creation', line: 'Artisans, makers, and a thousand unseen details, composed as one.' },
-  { numeral: 'IV', title: 'Celebration', line: 'The day itself — effortless for you, unforgettable for everyone in it.' },
-  { numeral: 'V', title: 'Legacy', line: 'What remains: a memory that defines a life, and a family’s story.' },
+  { numeral: 'I', title: 'Dream', line: 'Imagine without limitations — a life imagined, a feeling not yet named.' },
+  { numeral: 'II', title: 'Design', line: 'Collaborate with our team to bring your vision to life in every detail.' },
+  { numeral: 'III', title: 'Create', line: 'Transform ideas into extraordinary experiences — a thousand details composed as one.' },
+  { numeral: 'IV', title: 'Celebrate', line: 'Experience every moment knowing every detail has been carefully managed.' },
+  { numeral: 'V', title: 'Remember', line: 'Create memories that will live on forever — a legacy that begins here.' },
 ];
 
-const principles = [
-  'You will always know exactly where things stand.',
-  'Nothing is left to chance — and nothing to a template.',
-  'A modern house, built on thirty-four years of trust.',
+const services = [
+  {
+    numeral: '01',
+    title: 'Destination Weddings in Bali',
+    lede: "Clifftop ceremonies, private villas, jungle sanctuaries — composed with 30 years of insider access.",
+    keywords: 'Uluwatu · Ubud · Seminyak · Sidemen · Tabanan',
+  },
+  {
+    numeral: '02',
+    title: 'Luxury Indian Weddings',
+    lede: 'Mehndi, Sangeet, Shaadi, and Reception — choreographed as one narrative across multiple days.',
+    keywords: 'Multi-Day Ceremonies · Cultural Fusion · 50–500 Guests',
+  },
+  {
+    numeral: '03',
+    title: 'Multi-Day World Experiences',
+    lede: 'A weekend. A saga. A destination transformed — welcome gatherings to grand finales.',
+    keywords: 'Weekend Experiences · Curated Guest Journeys',
+  },
+  {
+    numeral: '04',
+    title: 'Private Estate Weddings',
+    lede: "Exclusive use of Bali's finest private estates — relationships that cannot be booked online.",
+    keywords: 'Exclusive Access · Villa Buyouts · Complete Privacy',
+  },
+  {
+    numeral: '05',
+    title: 'Corporate & Private Events',
+    lede: 'Brand launches, gala dinners, incentive retreats, and milestone celebrations held to the same exacting standard.',
+    keywords: 'Corporate Events · Brand Experiences · Gala Dinners · Incentive Travel',
+  },
+  {
+    numeral: '06',
+    title: 'Luxury Concierge & Guest Services',
+    lede: 'Every guest, cared for from arrival to departure — private transfers, villas, and curated Bali experiences.',
+    keywords: 'Private Transfers · Villa Curation · VIP Arrivals · Bali Concierge',
+  },
+  {
+    numeral: '07',
+    title: 'Curated Travel Packages & Itineraries',
+    lede: 'Bali beyond the event — bespoke multi-day journeys for international travellers who expect the extraordinary.',
+    keywords: 'Luxury Getaways · Cultural Immersions · Bali Itineraries · International Travel',
+  },
+  {
+    numeral: '08',
+    title: 'Milestone Celebrations & Luxury Private Events',
+    lede: 'Birthdays, anniversaries, family reunions, and intimate galas — built with the same obsession as our weddings.',
+    keywords: 'Birthday Galas · Anniversary Events · Private Dinners · Milestone Celebrations',
+  },
+];
+
+const dreamFeatures = [
+  {
+    icon: '◆',
+    title: 'Dream Builder Canvas',
+    body: 'Explore venues, select experiences, build your vision — and discover a realistic estimated investment, all from anywhere in the world.',
+  },
+  {
+    icon: '◈',
+    title: 'Budget Transparency',
+    body: 'Track payments, manage budgets, monitor timelines, view outstanding balances — complete financial clarity at every stage.',
+  },
+  {
+    icon: '◉',
+    title: 'Private Client Portal',
+    body: 'Organise vendors, manage guests, access planning documents, and collaborate with our team in real time — in one beautifully designed place.',
+  },
 ];
 
 const stars = [
@@ -48,170 +134,344 @@ const stars = [
 ];
 ---
 
-<BaseLayout navVariant="overlay">
-  <!-- 1 · Opening -->
-  <section class="relative isolate flex min-h-screen items-center justify-center overflow-hidden">
-    <img
-      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/b72df930a_ClifftopSunsetImage.jpg"
-      alt=""
-      aria-hidden="true"
-      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-25"
-    />
-    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/85 via-midnight-deep/80 to-obsidian/95"></div>
-    <div class="absolute inset-0 -z-10 opacity-70"><ParticleField client:idle /></div>
+<BaseLayout
+  title="Luxury Wedding Planner Bali | ICE Luxury Weddings & Events"
+  description="ICE Luxury Weddings & Events — Bali's premier destination wedding studio. Luxury Indian weddings, multi-day celebrations, private estate weddings, and corporate events. 30+ years of legacy, powered by proprietary Dream Builder technology. By application only."
+  navVariant="overlay"
+>
 
-    <div class="container-prose flex flex-col items-center py-32 text-center">
-      <p class="eyebrow mb-12 text-champagne">ICE · Luxury Weddings &amp; Events · Bali</p>
-      <OpeningSequence />
-      <h1 class="text-glow mt-12 max-w-4xl text-balance text-4xl leading-[1.05] text-crystal sm:text-6xl lg:text-7xl">
-        Where dreams become legacy.
-      </h1>
-      <p class="mt-7 max-w-xl text-lg leading-relaxed text-crystal-dim">
-        We are not wedding planners. We are wedding architects — and every celebration begins as a
-        blank canvas.
+  <!-- 1 · HERO -->
+  <section class="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <!-- Layer 1: video background -->
+    <video
+      id="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full object-cover"
+    >
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
+    <!-- Layer 2: dark overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/65"></div>
+    <!-- Layer 3: particles -->
+    <div class="absolute inset-0 opacity-70"><ParticleField client:idle /></div>
+
+    <!-- Layer 4: content -->
+    <div class="relative z-10 container-prose flex flex-col items-center justify-center py-16 text-center">
+      <div class="hero-logo-stage">
+        <div class="hero-logo-halo" aria-hidden="true"></div>
+        <div class="hero-logo-float">
+          <div class="hero-logo-inner-glow" aria-hidden="true"></div>
+          <div class="hero-logo-metal">
+            <IceLogo variant="mark" size="md" animate={true} class="text-crystal" />
+          </div>
+          <p class="hero-logo-wordmark">ICE Luxury Weddings &amp; Events</p>
+        </div>
+      </div>
+      <p class="hero-sub mt-5 max-w-2xl text-base leading-relaxed text-crystal-dim sm:mt-7 sm:text-lg">
+        We are dream architects, experience designers, and storytellers — from extraordinary weddings
+        to curated travel, luxury concierge, and once-in-a-lifetime events worldwide.
       </p>
-      <div class="mt-11 flex flex-wrap items-center justify-center gap-4">
+      <div class="hero-ctas mt-12 flex flex-wrap items-center justify-center gap-4">
         <a href="/apply" class="btn-gold sheen">Begin Your Journey</a>
         <a href="/the-house" class="btn-ghost-light">Discover ICE</a>
       </div>
+      <div class="hero-press mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 md:mt-16">
+        {press.map((p) => (
+          <span class={`press-name press-name--sm ${pressClass(p.data.outlet)}`}>{p.data.outlet}</span>
+        ))}
+      </div>
     </div>
-    <span class="eyebrow absolute bottom-8 left-1/2 -translate-x-1/2 text-silver-soft" aria-hidden="true">Scroll</span>
+
+    <span class="eyebrow absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-pulse text-burgundy-bright" aria-hidden="true">↓ Scroll</span>
+    <!-- Layer 5: star trail on top -->
     <div class="pointer-events-none absolute inset-0 z-20"><StarTrail client:idle /></div>
   </section>
 
-  <!-- 2 · The Promise -->
-  <section class="relative isolate overflow-hidden border-t border-silver/10 bg-obsidian">
-    <div class="container-prose py-24 md:py-32">
-      <SectionHeading
-        eyebrow="The ICE Difference"
-        title="Not planners. Not coordinators. Not packages."
-        intro="We are wedding architects, experience designers, and dream builders. Every celebration is a singular world, designed from the story of two people — never replicated, never templated."
-      />
-      <div class="mt-16 grid gap-6 md:grid-cols-3">
-        {
-          pillars.map((p, i) => (
-            <GlassCard class="reveal-on-scroll sheen">
-              <p class="font-display text-5xl text-champagne/70">{String(i + 1).padStart(2, '0')}</p>
-              <h3 class="mt-6 text-2xl text-crystal">{p.title}</h3>
-              <p class="mt-4 leading-relaxed text-silver">{p.body}</p>
-            </GlassCard>
-          ))
-        }
+  <!-- 2 · MANIFESTO -->
+  <section class="relative isolate overflow-hidden bg-obsidian">
+    <div class="container-prose py-14 md:py-24 lg:py-32">
+      <div class="mx-auto max-w-4xl space-y-6 text-center reveal-on-scroll">
+        <p class="eyebrow text-champagne">Our Belief</p>
+        <blockquote class="font-display text-3xl leading-snug text-crystal sm:text-4xl lg:text-5xl">
+          "No two love stories should ever look the same."
+        </blockquote>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-silver">
+          Your celebration should be inspired by your personality, your journey, your traditions, your dreams,
+          and the unique story that brought you together. Because your love story becomes our blueprint.
+        </p>
+      </div>
+      <div class="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div class="glass-card reveal-on-scroll p-8 text-center">
+          <p class="font-display text-3xl text-champagne">We don't believe</p>
+          <p class="mt-3 text-silver">in templates, packages, or copy-and-paste weddings.</p>
+        </div>
+        <div class="glass-card reveal-on-scroll p-8 text-center">
+          <p class="font-display text-3xl text-crystal">We believe</p>
+          <p class="mt-3 text-silver">every celebration begins with a blank canvas and a unique story.</p>
+        </div>
+        <div class="glass-card reveal-on-scroll p-8 text-center">
+          <p class="font-display text-3xl text-champagne">We create</p>
+          <p class="mt-3 text-silver">masterpieces — one-of-one experiences that have never existed before.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 3 · Legacy teaser -->
-  <section class="relative overflow-hidden bg-midnight-deep">
-    <div class="container-prose grid items-center gap-12 py-24 md:grid-cols-2 md:py-32">
+  <!-- 3 · THREE PILLARS -->
+  <section class="relative isolate overflow-hidden section-blue-border bg-midnight-deep">
+    <div class="diamond-grid absolute inset-0 -z-10 opacity-20" aria-hidden="true"></div>
+    <div class="container-prose py-14 md:py-24 lg:py-32">
       <SectionHeading
-        eyebrow="The House"
-        title="A mother. A son. A dream. A legacy."
+        eyebrow="What Makes ICE Different"
+        title="Legacy. Innovation. Technology."
+        intro="Three forces converge in one house — a legacy of thirty years, a creative vision for the future, and a technology platform that redefines how luxury celebrations are planned and experienced."
       />
-      <div class="space-y-6 text-lg leading-relaxed text-silver">
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {pillars.map((p, i) => (
+          <article class="pillar-card reveal-on-scroll sheen" data-delay={`${i * 0.13}s`}>
+            <div class="flex items-start justify-between">
+              <p class="eyebrow text-champagne">{p.eyebrow}</p>
+              <span class="font-display text-3xl text-champagne/30">{p.numeral}</span>
+            </div>
+            <h3 class="mt-6 text-2xl text-crystal">{p.title}</h3>
+            <p class="mt-4 leading-relaxed text-silver">{p.body}</p>
+            <p class="mt-6 text-xs tracking-widest text-champagne/60">{p.accent}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · STATS -->
+  <section class="section-blue-border bg-obsidian" style="border-bottom: 1px solid rgba(65,105,225,0.18);">
+    <div class="container-prose py-16 md:py-20">
+      <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-silver/10 md:grid-cols-4">
+        {stats.map((s, i) => (
+          <div class="stat-card-hover flex flex-col items-center justify-center gap-2 bg-midnight-deep/60 px-6 py-10 text-center reveal-on-scroll" data-delay={`${i * 0.08}s`}>
+            <dt class="eyebrow text-silver-soft">{s.label}</dt>
+            <dd class="font-display text-4xl text-burgundy-bright sm:text-5xl">
+              <span class="stat-counter" data-target={s.value} data-suffix={s.suffix}>0{s.suffix}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- 5 · FOUNDER STORY -->
+  <section class="relative overflow-hidden bg-midnight-deep">
+    <div class="container-prose grid items-center gap-10 py-14 md:grid-cols-2 md:gap-12 md:py-24 lg:py-32">
+      <div class="reveal-on-scroll">
+        <SectionHeading
+          eyebrow="A Legacy Built by Family"
+          title="Two generations. One vision."
+        />
+      </div>
+      <div class="space-y-6 text-lg leading-relaxed text-silver reveal-on-scroll">
         <p>
-          For thirty-four years, <span class="text-crystal">Nicky</span> has composed the world’s
-          most extraordinary celebrations — the face of the house, and the eye behind every ICE
-          commission.
+          What began as a passion for one woman evolved into something much greater. Together,
+          mother and son united <span class="text-crystal">experience, creativity, innovation, and vision</span> to
+          establish ICE Luxury Weddings &amp; Events.
         </p>
         <p>
-          With her son <span class="text-crystal">Tayne</span>, that legacy became ICE: the same
-          taste and trust, reimagined as a modern luxury experience — legacy and innovation, in one
-          house.
+          A company built on family values, genuine relationships, and a shared commitment to
+          creating extraordinary celebrations — grounded in principles that built its foundation,
+          elevated through a new generation of innovation.
+        </p>
+        <p class="italic text-silver-soft">
+          "Creating moments and memories that matter. Not only for today. But for generations to come."
         </p>
         <a href="/the-house" class="link-underline inline-block font-sans text-sm text-champagne">
-          Meet the house &rarr;
+          Meet the house →
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 4 · The Aisle -->
-  <section class="aisle relative">
-    <div class="container-prose py-24 md:py-32">
-      <div class="mb-16 text-center">
-        <p class="eyebrow">The Aisle</p>
-        <p class="mt-5 font-display text-2xl text-silver sm:text-3xl">Every celebration moves through five chapters.</p>
+  <!-- 6 · SIGNATURE SERVICES -->
+  <section class="relative isolate overflow-hidden bg-obsidian">
+    <div class="container-prose py-14 md:py-24 lg:py-32">
+      <SectionHeading
+        eyebrow="Weddings · Events · Concierge · Travel · Bali & Worldwide"
+        title="Composed for the world's most discerning clients."
+        intro="No packages. No templates. Whether a destination wedding, a milestone event, a curated Bali journey, or a luxury concierge experience — every commission is shaped entirely around your story."
+      />
+      <div class="mt-14 divide-y divide-silver/10">
+        {services.map((s) => (
+          <article class="service-entry group grid cursor-default gap-4 py-7 md:grid-cols-[auto_1fr_1.4fr_auto] md:gap-8 md:items-start md:py-8">
+            <span class="font-display text-sm text-burgundy-soft md:pt-1">{s.numeral}</span>
+            <h3 class="text-xl text-crystal transition-colors duration-300 group-hover:text-champagne">{s.title}</h3>
+            <div class="space-y-1">
+              <p class="leading-relaxed text-silver">{s.lede}</p>
+              <p class="text-xs tracking-wider text-silver/50">{s.keywords}</p>
+            </div>
+            <a href="/experiences" class="mt-1 self-start font-sans text-sm text-champagne opacity-0 transition-opacity duration-300 group-hover:opacity-100">View →</a>
+          </article>
+        ))}
       </div>
-      <div class="flex flex-col gap-28 md:gap-40">
+      <div class="mt-12 text-center md:text-left">
+        <a href="/experiences" class="btn-outline">Explore all experiences</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · THE ICE EXPERIENCE™ JOURNEY -->
+  <section class="aisle relative">
+    <div class="container-prose py-14 md:py-24 lg:py-32">
+      <div class="mb-16 text-center">
+        <p class="eyebrow">The ICE Experience™</p>
+        <p class="mt-5 font-display text-2xl text-silver sm:text-3xl">
+          Our process has been designed to remove stress while allowing creativity to flourish.
+        </p>
+      </div>
+      <div class="flex flex-col gap-24 md:gap-36">
         {chapters.map((c) => <Chapter numeral={c.numeral} title={c.title} line={c.line} />)}
       </div>
-    </div>
-  </section>
-
-  <!-- 5 · Innovation -->
-  <section class="relative isolate overflow-hidden border-y border-silver/10 bg-obsidian">
-    <div class="container-prose grid gap-12 py-24 md:grid-cols-[0.9fr_1.1fr] md:py-32">
-      <SectionHeading eyebrow="Legacy + Innovation" title="Innovation in service of intimacy." />
-      <div class="space-y-6">
-        <p class="text-lg leading-relaxed text-silver">
-          ICE pairs thirty-four years of taste with a modern, transparent way of working. Technology
-          here is quiet — it exists only to make the extraordinary feel effortless, and to keep you
-          certain at every step.
-        </p>
-        <ul class="space-y-3">
-          {
-            principles.map((line) => (
-              <li class="glass reveal-on-scroll flex items-center gap-4 px-6 py-4 text-crystal">
-                <span class="h-1.5 w-1.5 flex-none rounded-full bg-champagne" aria-hidden="true" />
-                {line}
-              </li>
-            ))
-          }
-        </ul>
+      <div class="mt-20 text-center">
+        <a href="/approach" class="link-underline inline-block font-sans text-sm text-champagne">
+          Understand our approach →
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 6 · Constellation teaser -->
+  <!-- 8 · DREAM BUILDER -->
+  <section class="relative isolate overflow-hidden border-y border-silver/10 bg-obsidian">
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="container-prose py-14 md:py-24 lg:py-32">
+      <div class="grid gap-16 md:grid-cols-2 md:items-start">
+        <div class="reveal-on-scroll">
+          <SectionHeading
+            eyebrow="The Power of Technology"
+            title="Wedding planning reimagined."
+            intro="Luxury should feel effortless. That is why we developed our own proprietary wedding planning ecosystem — the operating system behind extraordinary celebrations."
+          />
+          <p class="mt-6 text-silver leading-relaxed">
+            This is not simply an app. It is complete transparency, visibility, and control
+            throughout your planning journey — while maintaining an exceptional luxury experience.
+          </p>
+          <a href="/dream-builder" class="btn-gold mt-10">Explore Dream Builder</a>
+        </div>
+        <div class="grid gap-5 reveal-on-scroll">
+          {dreamFeatures.map((f) => (
+            <div class="feature-card">
+              <p class="font-display text-2xl text-burgundy-bright">{f.icon}</p>
+              <h3 class="mt-4 text-lg text-crystal">{f.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-silver">{f.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · PORTFOLIO -->
   <section class="relative isolate overflow-hidden bg-midnight-deep">
     <div class="diamond-grid absolute inset-0 -z-10 opacity-40" aria-hidden="true"></div>
-    <div class="container-prose py-24 md:py-32">
+    <div class="container-prose py-14 md:py-24 lg:py-32">
       <SectionHeading
-        eyebrow="Portfolio"
-        title="A constellation of love stories."
+        eyebrow="Portfolio · A Constellation of Love Stories"
+        title="Every celebration a one-of-one creation."
         intro="Much of our work is, by request, never published. A few of the worlds we have built —"
       />
       <div class="mt-14 grid auto-rows-[240px] grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
         {stars.map((s) => <ConstellationNode title={s.title} place={s.place} span={s.span} img={s.img} />)}
         <a href="/portfolio" class="glass-card flex h-full items-center justify-center p-7 text-center transition-transform duration-500 ease-luxe hover:-translate-y-2 sm:col-span-3 lg:col-span-2">
-          <span class="font-display text-xl text-champagne">Enter the constellation &rarr;</span>
+          <span class="font-display text-xl text-champagne">Enter the constellation →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 7 · Recognition -->
+  <!-- 10 · ICE DIFFERENCE -->
   <section class="border-t border-silver/10 bg-obsidian">
-    <div class="container-prose flex flex-col items-center gap-8 py-16">
+    <div class="container-prose py-20 md:py-24">
+      <p class="eyebrow text-center text-champagne mb-10">The ICE Difference</p>
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+        {[
+          '30+ Years of Excellence', 'Luxury Destination Wedding Specialists', 'Cultural Wedding Experts',
+          'Technology-Driven Planning', 'Bespoke Concierge Services', 'Global Clients Served',
+          'Curated Travel Packages', 'Luxury Event Production', 'Handpicked Expert Team',
+          'Milestone Celebration Specialists', 'By Application Only', 'International Travel Experiences'
+        ].map((item) => (
+          <div class="reveal-on-scroll glass rounded-xl px-4 py-4 text-center">
+            <p class="text-xs leading-relaxed text-silver">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · RECOGNITION — flowing marquee -->
+  <section class="section-blue-border bg-midnight-deep overflow-hidden">
+    <div class="flex flex-col items-center gap-5 py-10">
       <p class="eyebrow">Featured in</p>
-      <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-        {press.map((p) => <li class="font-display text-2xl tracking-wide text-silver/70">{p.data.outlet}</li>)}
+    </div>
+    <div class="relative overflow-hidden pb-10" aria-hidden="true">
+      <!-- gradient fade edges -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-midnight-deep to-transparent"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-midnight-deep to-transparent"></div>
+      <!-- duplicated list so the loop is seamless -->
+      <ul class="marquee-track flex items-center gap-0" aria-label="Press features">
+        {[...press, ...press, ...press].map((p, i) => (
+          <li class="flex items-center">
+            <span class={`press-name press-name--lg ${pressClass(p.data.outlet)} px-8 sm:px-14 whitespace-nowrap`}>
+              {p.data.outlet}
+            </span>
+            <span class="press-divider select-none" style="color: rgba(65,105,225,0.60)">◆</span>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
-  <!-- 8 · Finale -->
+  <!-- 12 · FINALE -->
   <section class="relative isolate flex min-h-[80vh] items-center justify-center overflow-hidden bg-obsidian">
     <img
       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/f6c97968a_AsianIMG_0218.jpg"
-      alt=""
-      aria-hidden="true"
+      alt="Luxury Indian wedding ceremony in Bali composed by ICE"
+      width="1920"
+      height="1080"
       class="absolute inset-0 -z-30 h-full w-full object-cover opacity-30"
+      loading="lazy"
     />
-    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/85 via-midnight-deep/80 to-obsidian/95"></div>
-    <div class="container-prose flex flex-col items-center py-24 text-center">
-      <IceMark class="h-20 w-20 text-champagne" />
-      <p class="eyebrow mt-10">Your story starts here</p>
+    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/85 via-midnight-deep/80 to-obsidian/98"></div>
+    <div class="container-prose flex flex-col items-center py-16 text-center md:py-24">
+      <IceLogo variant="mark" size="lg" glow={true} class="text-champagne reveal-on-scroll" />
+      <p class="eyebrow mt-10 text-champagne">Your Story Starts Here</p>
       <h2 class="mt-6 max-w-3xl text-balance text-4xl leading-tight text-crystal sm:text-6xl">
         Begin your journey.
       </h2>
-      <a href="/apply" class="btn-gold mt-11">Begin Your Journey</a>
+      <p class="mt-6 max-w-xl text-lg text-silver">
+        We accept a limited number of celebrations each year. Every application is read personally
+        by the founders of the house.
+      </p>
+      <div class="mt-11 flex flex-wrap items-center justify-center gap-4">
+        <a href="/apply" class="btn-gold sheen">Begin Your Journey</a>
+        <a href="/enquire" class="btn-ghost-light">Ask a quiet question</a>
+      </div>
     </div>
   </section>
+
 </BaseLayout>
 
 <style>
+  /* ── Vogue font trial — Didot uppercase on homepage display text only ── */
+  blockquote,
+  h1, h2, h3,
+  .font-display {
+    font-family: "Didot", "Bodoni MT", "Didot LT Std", "GFS Didot", "Bodoni 72", Georgia, serif !important;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
   .aisle {
     background: linear-gradient(
       180deg,
@@ -223,4 +483,26 @@ const stars = [
       #05070a 100%
     );
   }
+
+  /* Royal blue glow line at key section borders */
+  .section-blue-border {
+    border-top: 1px solid rgba(65, 105, 225, 0.18);
+    box-shadow: 0 -1px 22px rgba(65, 105, 225, 0.10);
+  }
 </style>
+
+<script>
+  function playHeroVideo() {
+    const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+    if (video) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+  }
+  // Fires on initial load AND after every View Transitions navigation
+  document.addEventListener('astro:page-load', playHeroVideo);
+  // bfcache restore
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) playHeroVideo();
+  });
+</script>
