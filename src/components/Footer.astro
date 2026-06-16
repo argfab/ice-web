@@ -1,5 +1,5 @@
 ---
-import IceWordmark from './IceWordmark.astro';
+import IceLogo from './IceLogo.astro';
 
 const year = new Date().getFullYear();
 const columns = [
@@ -8,20 +8,21 @@ const columns = [
     links: [
       { href: '/the-house', label: 'The House' },
       { href: '/approach', label: 'Approach' },
-      { href: '/experiences', label: 'Experiences' },
-    ],
-  },
-  {
-    heading: 'Work',
-    links: [
-      { href: '/destinations', label: 'Destinations' },
-      { href: '/portfolio', label: 'Portfolio' },
       { href: '/recognition', label: 'Recognition' },
     ],
   },
   {
-    heading: 'Connect',
+    heading: 'Experiences',
     links: [
+      { href: '/experiences', label: 'What We Compose' },
+      { href: '/destinations', label: 'Destinations' },
+      { href: '/portfolio', label: 'Portfolio' },
+    ],
+  },
+  {
+    heading: 'Platform',
+    links: [
+      { href: '/dream-builder', label: 'Dream Builder' },
       { href: '/enquire', label: 'Private Enquiry' },
       { href: '/apply', label: 'Begin Your Journey' },
     ],
@@ -29,25 +30,25 @@ const columns = [
 ];
 ---
 
-<footer class="border-t border-silver/10 bg-obsidian text-crystal">
+<footer class="bg-obsidian text-crystal footer-glow">
   <div class="container-prose grid gap-12 py-20 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
     <div>
-      <IceWordmark class="text-2xl text-crystal" />
+      <IceLogo variant="mark" size="md" class="text-crystal" />
       <p class="mt-6 max-w-xs text-sm leading-relaxed text-silver">
-        A Bali domiciled atelier composing the world’s most extraordinary celebrations. By application
-        only.
+        Bali’s most celebrated luxury event house. Destination weddings, milestone celebrations, curated travel packages, bespoke concierge, and private events — worldwide, by application only.
       </p>
-      <a href="/apply" class="btn-outline mt-8">Begin Your Journey</a>
+      <a href="/apply" class="btn-gold mt-8">Begin Your Journey</a>
+      <p class="mt-5 text-xs text-silver-soft">hello@iceluxuryweddings.com</p>
     </div>
 
     {
       columns.map((col) => (
-        <nav aria-label={col.heading}>
-          <p class="eyebrow text-silver-soft">{col.heading}</p>
+        <nav class="footer-col" aria-label={col.heading}>
+          <p class="footer-col-heading eyebrow">{col.heading}</p>
           <ul class="mt-5 space-y-3">
             {col.links.map((l) => (
               <li>
-                <a href={l.href} class="link-underline text-sm text-silver hover:text-crystal">
+                <a href={l.href} class="footer-col-link blue-link link-underline text-sm">
                   {l.label}
                 </a>
               </li>
@@ -58,12 +59,29 @@ const columns = [
     }
   </div>
 
-  <div class="border-t border-silver/10">
+  <div class="blue-border-t">
     <div
       class="container-prose flex flex-col items-start justify-between gap-3 py-6 text-xs text-silver-soft sm:flex-row sm:items-center"
     >
       <p>&copy; {year} ICE Luxury Weddings &amp; Events. All rights reserved.</p>
-      <p class="uppercase tracking-eyebrow">Where dreams become legacy</p>
+      <p class="uppercase tracking-eyebrow">Luxury Wedding Planner · Bali · Worldwide</p>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-col-heading {
+    color: rgba(200, 190, 180, 0.60);
+  }
+
+  .footer-col-link {
+    color: rgba(200, 190, 180, 0.65);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .footer-col-link:hover {
+    color: #F4F0EB;
+    text-shadow:
+      0 0 12px rgba(65, 105, 225, 0.70),
+      0 0 28px rgba(27, 58, 140, 0.45);
+  }
+</style>

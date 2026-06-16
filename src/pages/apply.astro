@@ -11,21 +11,84 @@ import Starfield from '../components/Starfield.astro';
   <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
     <Starfield />
     <div class="container-prose py-24 md:py-28">
-      <p class="eyebrow text-champagne">Your story starts here</p>
+      <p class="eyebrow text-champagne">Private Application · ICE Luxury Weddings Bali</p>
       <div class="rule mt-6" aria-hidden="true"></div>
       <h1 class="mt-7 max-w-3xl text-balance text-4xl leading-tight text-crystal sm:text-5xl">
         Begin your journey.
       </h1>
       <p class="mt-6 max-w-xl text-lg leading-relaxed text-silver">
         A few considered questions — the quiet beginning of a conversation. Everything you share is
-        held in confidence and read personally by the house.
+        held in confidence and read personally by the founders of the house.
       </p>
+      <div class="mt-8 flex flex-wrap gap-6 text-sm text-silver">
+        <span class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-champagne" aria-hidden="true"></span>
+          Read personally by Nicky &amp; Tayne
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-champagne" aria-hidden="true"></span>
+          Held in complete confidence
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-champagne" aria-hidden="true"></span>
+          No obligation to proceed
+        </span>
+      </div>
     </div>
   </header>
 
   <section class="bg-obsidian">
     <div class="container-prose py-20 md:py-28">
+      <!-- Dream Builder vision banner (shown client-side if ?via=dream-builder) -->
+      <div id="db-vision-banner" class="hidden mb-12">
+        <div class="rounded-2xl border border-champagne/25 bg-champagne/04 px-7 py-6">
+          <p class="eyebrow text-champagne">Your Dream Builder Vision · Transferred</p>
+          <p id="db-vision-text" class="mt-3 text-sm leading-relaxed text-silver italic"></p>
+          <a href="/dream-builder" class="mt-4 inline-block text-xs text-champagne/70 underline underline-offset-4 hover:text-champagne">
+            ← Edit your selections
+          </a>
+        </div>
+      </div>
+
       <ApplicationForm client:load />
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  import {
+    TYPE_LABELS,
+    LOCATION_LABELS,
+    STYLE_LABELS,
+    GUEST_LABELS,
+    TIMELINE_LABELS,
+    buildStory,
+  } from '../islands/DreamWizard/wizardConfig';
+  import type { WizardSelections } from '../islands/DreamWizard/wizardConfig';
+
+  function showBanner() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('via') !== 'dream-builder') return;
+
+    const selections: Partial<WizardSelections> = {
+      type: params.get('type') ?? '',
+      location: params.get('loc') ?? '',
+      style: params.get('style') ?? '',
+      guests: params.get('guests') ?? '',
+      timeline: params.get('when') ?? '',
+    };
+
+    const story = buildStory(selections as WizardSelections);
+
+    const banner = document.getElementById('db-vision-banner');
+    const textEl = document.getElementById('db-vision-text');
+    if (banner && textEl) {
+      textEl.textContent = story;
+      banner.classList.remove('hidden');
+    }
+  }
+
+  // Run on first load and on Astro page transitions
+  showBanner();
+  document.addEventListener('astro:page-load', showBanner);
+</script>

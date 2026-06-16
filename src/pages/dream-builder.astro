@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Starfield from '../components/Starfield.astro';
+import IceLogo from '../components/IceLogo.astro';
+import DreamWizard from '../islands/DreamWizard/DreamWizard.tsx';
+import DreamBuilderDemo from '../islands/DreamBuilderDemo/DreamBuilderDemo.tsx';
+
+const steps = [
+  { step: '1', title: 'Apply', body: 'Submit your private application. The house reads every one personally.' },
+  { step: '2', title: 'Consult', body: 'A confidential conversation with the founders — no obligation, only clarity.' },
+  { step: '3', title: 'Design', body: 'Your Dream Builder canvas comes alive with our first design presentation.' },
+  { step: '4', title: 'Build', body: 'Every detail is composed, coordinated, and tracked in your private portal.' },
+  { step: '5', title: 'Celebrate', body: 'You arrive. We hold every thread. The day unfolds exactly as envisioned.' },
+];
+
+const differentiators = [
+  'The only luxury wedding house in Bali with a proprietary planning platform',
+  'Real-time budget transparency — no hidden costs, ever',
+  "Full vendor coordination with Bali's most trusted artisans",
+  'A private portal your entire family can access from anywhere',
+  'Seamless coordination from first conversation to final send-off',
+  'Technology-driven planning without losing the human touch',
+];
+---
+
+<BaseLayout
+  title="Dream Builder — Technology-Driven Wedding Planning Bali | ICE Luxury Weddings"
+  description="ICE Dream Builder is the world's most advanced luxury wedding planning platform — budget estimation, vendor management, private client portal, and a design canvas. Exclusively for ICE couples in Bali and worldwide."
+>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+    HERO
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <header class="relative isolate overflow-hidden bg-obsidian">
+    <img
+      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/b72df930a_ClifftopSunsetImage.jpg"
+      alt=""
+      aria-hidden="true"
+      width="1920"
+      height="1080"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-[0.07]"
+    />
+    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian via-midnight-deep/90 to-obsidian"></div>
+    <Starfield />
+    <div class="container-prose py-24 md:py-32 text-center">
+      <p class="eyebrow text-champagne">ICE Proprietary Platform · Technology-Driven Wedding Planning</p>
+      <div class="rule mx-auto mt-6" aria-hidden="true"></div>
+      <h1 class="mt-7 text-balance text-4xl leading-tight text-crystal sm:text-5xl lg:text-6xl">
+        Build your dream.<br />
+        <span class="font-display italic text-champagne">Begin your journey.</span>
+      </h1>
+      <p class="mt-6 mx-auto max-w-xl text-lg leading-relaxed text-silver">
+        In five choices, tell us what you are imagining. We will carry your vision directly into your
+        private application — and Nicky and Tayne will read it personally.
+      </p>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+    THE WIZARD — primary interactive experience
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <section class="bg-midnight-deep">
+    <div class="container-prose py-20 md:py-28">
+      <DreamWizard client:load />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+    WHY — The problem we solved
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <section class="bg-obsidian sec-glow">
+    <div class="container-prose grid items-center gap-14 py-24 md:grid-cols-[1fr_0.9fr] md:py-32">
+      <div class="reveal-on-scroll space-y-7 text-lg leading-relaxed text-silver">
+        <p>
+          Luxury should feel effortless. That is why we developed our own proprietary wedding
+          planning ecosystem — the operating system behind every extraordinary ICE celebration.
+        </p>
+        <p>
+          Our technology platform gives couples <span class="text-crystal">complete transparency,
+          visibility, and control</span> throughout their planning journey — while maintaining an
+          exceptional luxury experience from first enquiry to final dance.
+        </p>
+        <p>
+          This is not simply an app. It is wedding planning reimagined — transparent, innovative,
+          personalised, and exciting.
+        </p>
+      </div>
+      <figure class="reveal-on-scroll border-l border-burgundy-soft/50 pl-8">
+        <blockquote class="font-display text-2xl leading-snug text-crystal sm:text-3xl">
+          "Technology here is quiet — it exists only to make the extraordinary feel effortless, and
+          to keep you certain at every step."
+        </blockquote>
+        <figcaption class="eyebrow mt-6 text-silver-soft">
+          Tayne de Villiers · Founder & Director of Innovation
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+    INTERACTIVE PLATFORM DEMO
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <section id="platform" class="bg-midnight-deep sec-glow">
+    <div class="container-prose py-24 md:py-32">
+      <SectionHeading
+        eyebrow="The Platform"
+        title="Four modules. One seamless world."
+        intro="Click each module to explore how Dream Builder transforms the planning of your celebration."
+      />
+      <div class="mt-14 reveal-on-scroll">
+        <DreamBuilderDemo client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+    DIFFERENTIATORS
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <section class="bg-obsidian sec-glow-y">
+    <div class="container-prose grid gap-12 py-24 md:grid-cols-[0.9fr_1.1fr] md:py-28">
+      <SectionHeading
+        eyebrow="Only at ICE"
+        title="What no other luxury wedding house offers."
+      />
+      <ul class="space-y-4">
+        {differentiators.map((d) => (
+          <li class="diff-item reveal-on-scroll glass flex items-start gap-4 px-6 py-5 text-crystal blue-border-l">
+            <span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-burgundy-bright blue-glow-dot" aria-hidden="true"></span>
+            <span class="leading-relaxed">{d}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+    HOW IT WORKS — Journey timeline
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <section class="bg-midnight-deep">
+    <div class="container-prose py-24 md:py-32">
+      <SectionHeading
+        eyebrow="How It Works"
+        title="From first conversation to final send-off."
+        intro="Dream Builder activates the moment you join the house. It grows with your celebration — and every update is visible to you, always."
+      />
+      <ol class="timeline-line mt-14">
+        {steps.map((s, i) => (
+          <li class="reveal-on-scroll relative flex gap-8 pb-10">
+            <div class="flex flex-col items-center">
+              <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-burgundy-soft/70 bg-obsidian text-xs text-burgundy-bright blue-glow">
+                {s.step}
+              </span>
+              {i < steps.length - 1 && (
+                <span class="mt-2 h-full min-h-[2rem] w-px bg-gradient-to-b from-burgundy-bright/50 to-burgundy-bright/05" aria-hidden="true"></span>
+              )}
+            </div>
+            <div class="pb-2 pt-0.5">
+              <h3 class="text-xl text-crystal">{s.title}</h3>
+              <p class="mt-2 max-w-lg leading-relaxed text-silver">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+    FINALE
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <section class="relative isolate overflow-hidden border-t border-silver/10 bg-obsidian">
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="container-prose flex flex-col items-center py-24 text-center md:py-28">
+      <IceLogo variant="mark" size="md" glow={true} class="text-champagne reveal-on-scroll" />
+      <p class="eyebrow mt-8 text-champagne">Technology-Driven Wedding Planning · Bali & Worldwide</p>
+      <h2 class="mt-5 max-w-2xl text-balance text-3xl leading-tight text-crystal sm:text-5xl">
+        Your celebration deserves a plan as beautiful as the day itself.
+      </h2>
+      <p class="mt-6 max-w-xl text-lg text-silver">
+        Dream Builder is available exclusively to ICE couples. Begin your private application to
+        unlock access to the platform.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href="/apply" class="btn-gold sheen">Begin Your Journey</a>
+        <a href="/enquire" class="btn-ghost-light">Ask a question</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Moving glass shimmer on differentiator items */
+  .diff-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    transition:
+      background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* The sweeping shimmer that slides across on hover */
+  .diff-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.07) 45%,
+      rgba(65, 105, 225, 0.10) 55%,
+      transparent 80%
+    );
+    transform: translateX(-110%);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .diff-item:hover::before {
+    transform: translateX(110%);
+  }
+
+  .diff-item:hover {
+    background: rgba(27, 58, 140, 0.20);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border-color: rgba(65, 105, 225, 0.60) !important;
+    box-shadow:
+      0 0 28px rgba(65, 105, 225, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transform: translateX(5px);
+  }
+
+  .diff-item:hover span:last-child {
+    color: #F4F0EB;
+  }
+</style>

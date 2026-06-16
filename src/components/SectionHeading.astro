@@ -5,8 +5,9 @@ interface Props {
   intro?: string;
   align?: 'left' | 'center';
   as?: 'h1' | 'h2';
+  titleClass?: string;
 }
-const { eyebrow, title, intro, align = 'left', as = 'h2' } = Astro.props;
+const { eyebrow, title, intro, align = 'left', as = 'h2', titleClass = '' } = Astro.props;
 const Heading = as;
 const alignClass = align === 'center' ? 'items-center text-center' : 'items-start text-left';
 ---
@@ -14,7 +15,7 @@ const alignClass = align === 'center' ? 'items-center text-center' : 'items-star
 <div class:list={['flex flex-col gap-5', alignClass]}>
   {eyebrow && <p class="eyebrow">{eyebrow}</p>}
   <div class="rule" aria-hidden="true"></div>
-  <Heading class="max-w-3xl text-3xl leading-tight text-crystal sm:text-4xl lg:text-5xl">
+  <Heading class:list={['max-w-3xl text-3xl leading-tight text-crystal sm:text-4xl lg:text-5xl', titleClass]}>
     {title}
   </Heading>
   {intro && <p class="max-w-prose text-base leading-relaxed text-silver sm:text-lg">{intro}</p>}

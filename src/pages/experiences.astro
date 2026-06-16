@@ -2,69 +2,270 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Starfield from '../components/Starfield.astro';
+import IceLogo from '../components/IceLogo.astro';
 
-const experiences = [
+const signature = [
   {
-    name: 'The Blank Canvas',
+    numeral: '01',
+    category: 'Destination Wedding',
+    title: 'Destination Weddings in Bali',
+    lede: "Bali's most extraordinary venues — composed by the house that knows them intimately.",
+    body: "Cliff-edge estates above Uluwatu. Private-pool villas folded into Ubud's rice terraces. Sacred jungle sanctuaries in Sidemen. Beachfront estates in Seminyak. We have the relationships that open doors no itinerary ever could — and we know exactly which door to open for your story.",
+    keywords: ['Uluwatu', 'Ubud', 'Seminyak', 'Sidemen', 'Tabanan', 'Canggu'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/b72df930a_ClifftopSunsetImage.jpg',
+    seoTerms: 'Luxury Destination Wedding Bali · Private Estate Weddings Bali',
+  },
+  {
+    numeral: '02',
+    category: 'Indian Wedding',
+    title: 'Luxury Indian Weddings in Bali',
+    lede: "The grandeur of Indian wedding traditions, composed in one of the world's most beautiful settings.",
+    body: 'Mehndi, Sangeet, Shaadi, and Reception — four ceremonies, one seamless narrative, composed across multiple days with cultural reverence and modern luxury design. We have coordinated Indian weddings for 50 to 500 guests, with full vendor coordination, cultural consultancy, and a guest journey that begins the moment families land in Bali.',
+    keywords: ['Mehndi', 'Sangeet', 'Shaadi', 'Reception', 'Multi-Day', '50–500 Guests'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/83587c304_IndianWeddingImage3.jpg',
+    seoTerms: 'Luxury Indian Weddings Bali · Indian Wedding Planner Bali',
+  },
+  {
+    numeral: '03',
+    category: 'Multi-Day Experience',
+    title: 'Multi-Day World Experiences',
+    lede: 'A weekend. A saga. A destination transformed.',
+    body: 'Welcome gatherings, bespoke excursions, intimate rehearsal dinners, grand ceremonies, and unforgettable send-offs — choreographed as one continuous story with its own rhythm, building to a single unforgettable crescendo. We design the arc, the pacing, and the emotional temperature of each day.',
+    keywords: ['Welcome Dinner', 'Rehearsal Dinner', 'Day-After Brunch', 'Guest Experiences'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/6219d8aa1_853eeb24a_IMG_1290.jpg',
+    seoTerms: 'Multi-Day Wedding Experiences Bali · Weekend Wedding Bali',
+  },
+  {
+    numeral: '04',
+    category: 'Private Estate',
+    title: 'Private Estate Weddings',
+    lede: "Exclusive access to Bali's finest private estates — relationships that cannot be booked online.",
+    body: "Thirty years of trust with Bali's most exceptional private families and estate owners. We secure complete buyouts of villas and estates where access is never publicly listed — and we transform them into worlds for your guests alone. Total privacy. Total control. Total beauty.",
+    keywords: ['Exclusive Use', 'Villa Buyout', 'Private Venue', 'Complete Privacy'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/ddd547f76_IMG_1269.jpg',
+    seoTerms: 'Private Estate Weddings Bali · Exclusive Villa Wedding Bali',
+  },
+  {
+    numeral: '05',
+    category: 'The Blank Canvas',
+    title: 'The Blank Canvas',
     lede: 'A celebration designed from nothing but your story.',
-    body: 'No package, no template, no starting point but the two of you. We design the entire world — concept, narrative, design, and production — and you are present only for the moments that matter.',
+    body: 'No package. No template. No starting point but the two of you. We design the entire world — concept, narrative, set, light, flora, sound, scent, and table — and you are present only for the moments that matter. This is the truest expression of what ICE does.',
+    keywords: ['Fully Bespoke', 'Concept to Creation', 'No Template'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/1f28e7e5e_GlampNusa-951.jpg',
+    seoTerms: 'Bespoke Wedding Design Bali · Luxury Wedding Organiser Bali',
   },
   {
-    name: 'Multi-Day Worlds',
-    lede: 'A weekend, a saga, a destination transformed.',
-    body: 'Welcome gatherings, ceremonies, cultural rites, and send-offs — choreographed as one continuous story with its own rhythm, building to a single unforgettable crescendo.',
+    numeral: '06',
+    category: 'Corporate & Events',
+    title: 'Corporate & Private Events',
+    lede: 'Brand launches, milestone dinners, and incentive experiences held to the same exacting standard.',
+    body: 'ICE produces corporate events with the same rigour, taste, and attention we bring to weddings. Whether a board dinner for twenty in a private Ubud villa or an incentive experience for three hundred across three days — the standard does not change. Neither does the discretion.',
+    keywords: ['Brand Events', 'Incentive Travel', 'Gala Dinners', 'Corporate Retreats'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/c13e65a27_270519241_IMG_12881.jpg',
+    seoTerms: 'Luxury Event Planner Bali · Corporate Events Bali',
   },
   {
-    name: 'Art Direction & Production',
+    numeral: '07',
+    category: 'Proposal',
+    title: 'Proposal Planning',
+    lede: 'A single extraordinary moment — designed in every detail, remembered forever.',
+    body: 'Bali offers some of the most breathtaking proposal settings in the world. We design the entire experience: the location, the light, the timing, the intimate touches that make the moment unmistakably yours — and ensure every detail is in place for the moment you ask the question.',
+    keywords: ['Surprise Proposals', 'Intimate Setting', 'Cinematic Moment'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/769415c40_b088dda90_BeachIMG_2428.jpg',
+    seoTerms: 'Proposal Planning Bali · Luxury Proposals Bali',
+  },
+  {
+    numeral: '08',
+    category: 'Art Direction',
+    title: 'Art Direction & Production',
     lede: 'The cinematic direction of a once-in-a-lifetime day.',
-    body: 'Set, light, flora, sound, scent, and table — held to a single aesthetic vision and executed by artisans we trust with the irreplaceable.',
+    body: 'Set, light, flora, sound, scent, and table — held to a single aesthetic vision and executed by artisans we trust with the irreplaceable. Our art direction service is available as a standalone commission for couples who have their venue and date but require a world-class creative eye to bring their vision to life.',
+    keywords: ['Floral Design', 'Lighting Design', 'Set Design', 'Scent Direction'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/f6c97968a_AsianIMG_0218.jpg',
+    seoTerms: 'Bespoke Wedding Design Bali · Wedding Art Direction Bali',
   },
   {
-    name: 'The Guest Journey',
-    lede: 'Hospitality that begins long before the day.',
-    body: 'Arrivals, stays, and curated experiences so that every guest feels personally received — and your families simply arrive, and enjoy.',
+    numeral: '09',
+    category: 'Concierge',
+    title: 'Luxury Concierge & Guest Journey Design',
+    lede: 'From the moment your guests land, every detail of their world is thoughtfully held.',
+    body: 'ICE extends far beyond the event itself. Our bespoke concierge service manages private airport transfers, curated villa and hotel accommodation, VIP arrivals, exclusive restaurant reservations, spa bookings, and personalised cultural experiences — ensuring every guest, from the couple to the most distant family member, arrives cared for and leaves transformed. For international travellers, we become the trusted hand that makes Bali feel entirely effortless.',
+    keywords: ['Private Transfers', 'Villa Curation', 'VIP Arrivals', 'Guest Experience Management', 'Bali Concierge'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/769415c40_b088dda90_BeachIMG_2428.jpg',
+    seoTerms: 'Luxury Concierge Bali · VIP Guest Services Bali · Private Travel Management Bali',
   },
+  {
+    numeral: '10',
+    category: 'Travel & Experiences',
+    title: 'Curated Travel Packages & Bali Itineraries',
+    lede: 'Bali, curated to its fullest — for international travellers who expect the extraordinary.',
+    body: 'Beyond the celebration, Bali is a world unto itself. ICE designs bespoke multi-day travel itineraries for couples, families, and international guests — private cultural immersions, hidden-gem dining, sunrise temple ceremonies, cliffside wellness retreats, river rafting through ancient jungle, and exclusive access to Bali\'s most extraordinary private spaces. We turn a trip into a memory that rivals the event itself.',
+    keywords: ['Bali Itineraries', 'Cultural Immersions', 'Private Experiences', 'International Travellers', 'Luxury Getaways'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/b72df930a_ClifftopSunsetImage.jpg',
+    seoTerms: 'Luxury Travel Packages Bali · Bespoke Bali Itineraries · International Travel Experiences Bali',
+  },
+  {
+    numeral: '11',
+    category: 'Private Events',
+    title: 'Milestone Celebrations & Luxury Private Events',
+    lede: "Life's most extraordinary moments deserve a world built entirely around them.",
+    body: 'Landmark birthdays, anniversary galas, intimate family reunions, retirement celebrations, and milestone dinners — ICE applies the same creative rigour, insider vendor relationships, and production excellence to private celebrations of every kind. Whether an intimate seated dinner for twelve in a private Ubud villa or a multi-day milestone gala for three hundred guests flown in from around the world, the standard does not waver.',
+    keywords: ['Birthday Galas', 'Anniversary Celebrations', 'Private Dinners', 'Milestone Events', 'Family Reunions'],
+    img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/6219d8aa1_853eeb24a_IMG_1290.jpg',
+    seoTerms: 'Private Event Planner Bali · Luxury Milestone Events Bali · Gala Dinner Bali',
+  },
+];
+
+const principles = [
+  { title: 'By application only', body: 'We accept a limited number of celebrations each year — enough to give every commission the full attention it deserves.' },
+  { title: 'Investment discussed privately', body: 'No package pricing. No menus. No templates. A private conversation about your story and what it will take to bring it to life.' },
+  { title: 'One point of contact', body: 'From first application to final send-off, you have direct access to the founders of the house — not a coordinator, the house.' },
 ];
 ---
 
 <BaseLayout
-  title="Experiences"
-  description="What ICE composes — bespoke celebrations, multi-day worlds, art direction, and the guest journey. Never packages."
+  title="Luxury Weddings, Events & Experiences Bali | ICE Luxury Weddings & Events"
+  description="ICE composes destination weddings, Indian weddings, milestone celebrations, corporate events, luxury concierge services, and curated travel packages in Bali and worldwide. Bespoke, never packaged. By application only."
 >
+
+  <!-- HERO -->
   <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
     <Starfield />
     <div class="container-prose py-28 md:py-36">
       <SectionHeading
         as="h1"
-        eyebrow="Experiences"
+        eyebrow="Weddings · Events · Experiences · Travel · Bali & Worldwide"
         title="What we compose."
-        intro="Not a menu of packages — a set of capabilities, shaped entirely around your story. Investment is discussed privately."
+        intro="From intimate proposals and luxury destination weddings to milestone celebrations, curated travel packages, bespoke concierge services, and once-in-a-lifetime events — every commission begins with one belief: no two stories should ever look the same."
       />
     </div>
   </header>
 
-  <section class="bg-midnight-deep pb-24 md:pb-32">
-    <div class="container-prose space-y-6 pt-4">
-      {
-        experiences.map((e) => (
-          <article class="glass-card reveal-on-scroll grid items-start gap-6 p-8 sm:p-10 md:grid-cols-[1fr_1.6fr] md:gap-10">
-            <div>
-              <h3 class="text-xl text-crystal sm:text-2xl">{e.name}</h3>
-              <p class="mt-3 font-display text-base italic leading-snug text-champagne">{e.lede}</p>
+  <!-- EXPERIENCES — full list -->
+  <section class="bg-midnight-deep">
+    <div class="container-prose space-y-0 py-8 pb-16 md:pb-24">
+      {signature.map((e, i) => (
+        <article class:list={[
+          'reveal-on-scroll grid items-center gap-10 py-16 md:grid-cols-2 md:py-20',
+          'border-b border-silver/10',
+          i % 2 === 1 && 'md:[&>figure]:order-last',
+        ]}>
+          <figure class="relative overflow-hidden rounded-2xl">
+            <img
+              src={e.img}
+              alt={e.title}
+              width="800"
+              height="600"
+              loading="lazy"
+              class="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-luxe hover:scale-105"
+            />
+            <span class="absolute left-4 top-4 rounded-full bg-obsidian/70 px-3 py-1 text-xs tracking-widest text-burgundy-bright backdrop-blur-sm blue-border-2">
+              {e.category}
+            </span>
+          </figure>
+          <div>
+            <p class="eyebrow text-burgundy-bright">{e.numeral}</p>
+            <h2 class="mt-4 text-3xl text-crystal sm:text-4xl">{e.title}</h2>
+            <p class="mt-3 font-display text-lg italic text-champagne/80">{e.lede}</p>
+            <p class="mt-5 leading-relaxed text-silver">{e.body}</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {e.keywords.map((kw) => (
+                <span class="rounded-full border border-burgundy-soft/35 px-3 py-1 text-xs text-burgundy-bright/80">{kw}</span>
+              ))}
             </div>
-            <p class="leading-relaxed text-silver">{e.body}</p>
-          </article>
-        ))
-      }
+            <p class="mt-5 text-xs tracking-widest text-champagne/50">{e.seoTerms}</p>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
-  <section class="border-t border-silver/10 bg-obsidian">
-    <div class="container-prose flex flex-col items-start gap-8 py-20 md:flex-row md:items-center md:justify-between">
-      <h2 class="max-w-xl text-3xl leading-tight text-crystal sm:text-4xl">
-        Tell us what you envision. We will tell you what is possible.
-      </h2>
-      <a href="/apply" class="btn-gold">Begin Your Journey</a>
+  <!-- PRINCIPLES -->
+  <section class="bg-obsidian sec-glow">
+    <div class="container-prose py-24 md:py-28">
+      <SectionHeading
+        eyebrow="How We Work"
+        title="A way of working, not a package."
+        align="center"
+      />
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        {principles.map((p) => (
+          <div class="principle-card reveal-on-scroll p-8 text-center">
+            <h3 class="text-xl text-champagne">{p.title}</h3>
+            <p class="mt-4 leading-relaxed text-crystal/80">{p.body}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
+
+  <!-- CTA -->
+  <section class="bg-midnight-deep sec-glow">
+    <div class="container-prose flex flex-col items-center gap-8 py-20 text-center md:flex-row md:items-center md:justify-between md:text-left">
+      <div>
+        <h2 class="max-w-xl text-3xl leading-tight text-crystal sm:text-4xl">
+          Tell us what you envision. We will tell you what is possible.
+        </h2>
+        <p class="mt-4 max-w-lg text-silver">
+          Luxury Weddings · Milestone Events · Concierge · Curated Travel · Bali & Worldwide
+        </p>
+      </div>
+      <div class="flex flex-col gap-4 sm:flex-row">
+        <a href="/apply" class="btn-gold sheen">Begin Your Journey</a>
+        <a href="/enquire" class="btn-outline">Ask a question</a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  .principle-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: rgba(27, 58, 140, 0.10);
+    border: 1px solid rgba(65, 105, 225, 0.22);
+    transition:
+      background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .principle-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.07) 45%,
+      rgba(65, 105, 225, 0.12) 55%,
+      transparent 80%
+    );
+    transform: translateX(-110%);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .principle-card:hover::before {
+    transform: translateX(110%);
+  }
+  .principle-card:hover {
+    background: rgba(27, 58, 140, 0.22);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(65, 105, 225, 0.55);
+    box-shadow:
+      0 0 40px rgba(65, 105, 225, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+  }
+  .principle-card:hover h3 {
+    text-shadow: 0 0 20px rgba(199, 174, 123, 0.45);
+  }
+  .principle-card:hover p {
+    color: #F4F0EB;
+  }
+</style>
