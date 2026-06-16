@@ -47,8 +47,10 @@ function devApiStub() {
 
 // https://astro.build/config
 export default defineConfig({
-  // Used for canonical + absolute Open Graph URLs. Update when a custom domain is live.
-  site: 'https://example.com',
+  // Canonical + absolute Open Graph URLs. Release builds inject the real production
+  // domain via the SITE_URL env var (set as a repo Actions variable); local dev and
+  // previews fall back to example.com.
+  site: process.env.SITE_URL || 'https://example.com',
   output: 'static',
   integrations: [react(), tailwind({ applyBaseStyles: false })],
   // Keep all CSS external so style-src can stay 'self' (no inline styles to allow).
