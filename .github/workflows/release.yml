@@ -1,0 +1,87 @@
+name: Release
+
+# Build the static site and publish it as a checksummed artifact that genive
+# pins and deploys. This job is UNPRIVILEGED by design — it never sees AWS
+# credentials. genive only ever consumes the built `dist/` bytes, never this source.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to build & release (e.g. v0.1.0)'
+        required: true
+
+permissions:
+  contents: write # create the GitHub Release + upload assets
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    env:
+      # Production domain for canonical/Open Graph URLs. Set this repo variable under
+      # Settings → Secrets and variables → Actions → Variables. Falls back to example.com.
+      SITE_URL: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref_name }}
+
+      - name: Check SITE_URL
+        run: |
+          if [ -z "$SITE_URL" ]; then
+            echo "::warning::SITE_URL repo variable is not set — canonical/OG URLs will fall back to example.com. Set it before a real production release."
+          else
+            echo "Building with SITE_URL=$SITE_URL"
+          fi
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (canonical/OG URLs use SITE_URL)
+        run: pnpm build
+
+      - name: Package dist + checksum
+        id: pkg
+        run: |
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          ASSET="ice-web-dist-${TAG}.tgz"
+          tar -czf "$ASSET" -C dist .
+          SHA="$(sha256sum "$ASSET" | cut -d' ' -f1)"
+          echo "$SHA  $ASSET" > "$ASSET.sha256"
+          {
+            echo "tag=$TAG"
+            echo "asset=$ASSET"
+            echo "sha=$SHA"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.pkg.outputs.tag }}" \
+            "${{ steps.pkg.outputs.asset }}" "${{ steps.pkg.outputs.asset }}.sha256" \
+            --title "${{ steps.pkg.outputs.tag }}" \
+            --notes "Front-end build artifact for genive to pin & deploy.
+
+          sha256: \`${{ steps.pkg.outputs.sha }}\`"
+
+      - name: How to pin in genive
+        run: |
+          {
+            echo "### Pin this in genive \`infra/frontend-release.json\` and merge to main:"
+            echo '```json'
+            echo '{'
+            echo "  \"tag\": \"${{ steps.pkg.outputs.tag }}\","
+            echo "  \"asset\": \"${{ steps.pkg.outputs.asset }}\","
+            echo "  \"sha256\": \"${{ steps.pkg.outputs.sha }}\""
+            echo '}'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
