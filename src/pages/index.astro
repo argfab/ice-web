@@ -32,7 +32,7 @@ const pillars = [
     eyebrow: 'Innovation',
     title: 'A Bold Creative Vision',
     body: 'Tayne brings a bold and modern approach to luxury celebrations — combining creativity, technology, branding, and experience design to push boundaries and redefine what is possible.',
-    accent: 'TAYNE DE VILLIERS · DIRECTOR',
+    accent: 'TAYNE DE VILLIERS · FOUNDER & DIRECTOR',
   },
   {
     numeral: '03',
@@ -222,7 +222,30 @@ const stars = [
     </div>
   </section>
 
-  <!-- 3 · THREE PILLARS -->
+  <!-- 3 · RECOGNITION — flowing marquee -->
+  <section class="section-blue-border bg-midnight-deep overflow-hidden">
+    <div class="flex flex-col items-center gap-5 py-10">
+      <p class="eyebrow">Featured in</p>
+    </div>
+    <div class="relative overflow-hidden pb-10" aria-hidden="true">
+      <!-- gradient fade edges -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-midnight-deep to-transparent"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-midnight-deep to-transparent"></div>
+      <!-- duplicated list so the loop is seamless -->
+      <ul class="marquee-track flex items-center gap-0" aria-label="Press features">
+        {[...press, ...press, ...press].map((p, i) => (
+          <li class="flex items-center">
+            <span class={`press-name press-name--lg ${pressClass(p.data.outlet)} px-8 sm:px-14 whitespace-nowrap`}>
+              {p.data.outlet}
+            </span>
+            <span class="press-divider select-none blue-text">◆</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 · THREE PILLARS -->
   <section class="relative isolate overflow-hidden section-blue-border bg-midnight-deep">
     <div class="diamond-grid absolute inset-0 -z-10 opacity-20" aria-hidden="true"></div>
     <div class="container-prose py-14 md:py-24 lg:py-32">
@@ -247,7 +270,7 @@ const stars = [
     </div>
   </section>
 
-  <!-- 4 · STATS -->
+  <!-- 5 · STATS -->
   <section class="section-blue-border bg-obsidian blue-border-b2">
     <div class="container-prose py-16 md:py-20">
       <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-silver/10 md:grid-cols-4">
@@ -263,7 +286,7 @@ const stars = [
     </div>
   </section>
 
-  <!-- 5 · FOUNDER STORY -->
+  <!-- 6 · FOUNDER STORY -->
   <section class="relative overflow-hidden bg-midnight-deep">
     <div class="container-prose grid items-center gap-10 py-14 md:grid-cols-2 md:gap-12 md:py-24 lg:py-32">
       <div class="reveal-on-scroll">
@@ -293,7 +316,7 @@ const stars = [
     </div>
   </section>
 
-  <!-- 6 · SIGNATURE SERVICES -->
+  <!-- 7 · SIGNATURE SERVICES -->
   <section class="relative isolate overflow-hidden bg-obsidian">
     <div class="container-prose py-14 md:py-24 lg:py-32">
       <SectionHeading
@@ -320,7 +343,7 @@ const stars = [
     </div>
   </section>
 
-  <!-- 7 · THE ICE EXPERIENCE™ JOURNEY -->
+  <!-- 8 · THE ICE EXPERIENCE™ JOURNEY -->
   <section class="aisle relative">
     <div class="container-prose py-14 md:py-24 lg:py-32">
       <div class="mb-16 text-center">
@@ -340,7 +363,7 @@ const stars = [
     </div>
   </section>
 
-  <!-- 8 · DREAM BUILDER -->
+  <!-- 9 · DREAM BUILDER -->
   <section class="relative isolate overflow-hidden border-y border-silver/10 bg-obsidian">
     <div class="aurora" aria-hidden="true"></div>
     <div class="container-prose py-14 md:py-24 lg:py-32">
@@ -370,7 +393,7 @@ const stars = [
     </div>
   </section>
 
-  <!-- 9 · PORTFOLIO -->
+  <!-- 10 · PORTFOLIO -->
   <section class="relative isolate overflow-hidden bg-midnight-deep">
     <div class="diamond-grid absolute inset-0 -z-10 opacity-40" aria-hidden="true"></div>
     <div class="container-prose py-14 md:py-24 lg:py-32">
@@ -388,59 +411,47 @@ const stars = [
     </div>
   </section>
 
-  <!-- 10 · ICE DIFFERENCE -->
+  <!-- 11 · ICE DIFFERENCE -->
   <section class="border-t border-silver/10 bg-obsidian">
     <div class="container-prose py-20 md:py-24">
       <p class="eyebrow text-center text-champagne mb-10">The ICE Difference</p>
       <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
         {[
-          '30+ Years of Excellence', 'Luxury Destination Wedding Specialists', 'Cultural Wedding Experts',
-          'Technology-Driven Planning', 'Bespoke Concierge Services', 'Global Clients Served',
-          'Curated Travel Packages', 'Luxury Event Production', 'Handpicked Expert Team',
-          'Milestone Celebration Specialists', 'By Application Only', 'International Travel Experiences'
+          { label: '30+ Years of Excellence', href: '/the-house' },
+          { label: 'Luxury Destination Wedding Specialists', href: '/destinations' },
+          { label: 'Cultural Wedding Experts', href: '/experiences' },
+          { label: 'Technology-Driven Planning', href: '/dream-builder' },
+          { label: 'Bespoke Concierge Services', href: '/experiences' },
+          { label: 'Global Clients Served', href: '/the-house' },
+          { label: 'Curated Travel Packages', href: '/destinations' },
+          { label: 'Luxury Event Production', href: '/experiences' },
+          { label: 'Handpicked Expert Team', href: '/the-house' },
+          { label: 'Milestone Celebration Specialists', href: '/experiences' },
+          { label: 'By Application Only', href: '/apply' },
+          { label: 'International Travel Experiences', href: '/destinations' },
         ].map((item) => (
-          <div class="reveal-on-scroll glass rounded-xl px-4 py-4 text-center">
-            <p class="text-xs leading-relaxed text-silver">{item}</p>
-          </div>
+          <a
+            href={item.href}
+            class="reveal-on-scroll glass-card flex items-center justify-center rounded-xl px-4 py-4 text-center transition-transform duration-500 ease-luxe hover:-translate-y-1"
+          >
+            <p class="text-xs leading-relaxed text-silver">{item.label}</p>
+          </a>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- 11 · RECOGNITION — flowing marquee -->
-  <section class="section-blue-border bg-midnight-deep overflow-hidden">
-    <div class="flex flex-col items-center gap-5 py-10">
-      <p class="eyebrow">Featured in</p>
-    </div>
-    <div class="relative overflow-hidden pb-10" aria-hidden="true">
-      <!-- gradient fade edges -->
-      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-midnight-deep to-transparent"></div>
-      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-midnight-deep to-transparent"></div>
-      <!-- duplicated list so the loop is seamless -->
-      <ul class="marquee-track flex items-center gap-0" aria-label="Press features">
-        {[...press, ...press, ...press].map((p, i) => (
-          <li class="flex items-center">
-            <span class={`press-name press-name--lg ${pressClass(p.data.outlet)} px-8 sm:px-14 whitespace-nowrap`}>
-              {p.data.outlet}
-            </span>
-            <span class="press-divider select-none blue-text">◆</span>
-          </li>
-        ))}
-      </ul>
     </div>
   </section>
 
   <!-- 12 · FINALE -->
   <section class="relative isolate flex min-h-[80vh] items-center justify-center overflow-hidden bg-obsidian">
     <img
-      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/f6c97968a_AsianIMG_0218.jpg"
-      alt="Luxury Indian wedding ceremony in Bali composed by ICE"
-      width="1920"
-      height="1080"
-      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-30"
+      src="/images/finale-natalie-max.webp"
+      alt="Bride and groom walking down a candlelit beach aisle at their Bali wedding, composed by ICE"
+      width="2400"
+      height="1600"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-40"
       loading="lazy"
     />
-    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/85 via-midnight-deep/80 to-obsidian/98"></div>
+    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-obsidian/75 via-midnight-deep/70 to-obsidian/92"></div>
     <div class="container-prose flex flex-col items-center py-16 text-center md:py-24">
       <IceLogo variant="mark" size="lg" glow={true} class="text-champagne reveal-on-scroll" />
       <p class="eyebrow mt-10 text-champagne">Your Story Starts Here</p>

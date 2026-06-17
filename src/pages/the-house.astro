@@ -1,10 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import PlaceholderImage from '../components/PlaceholderImage.astro';
 import Starfield from '../components/Starfield.astro';
 import IceLogo from '../components/IceLogo.astro';
 import TeamGrid from '../islands/TeamGrid/TeamGrid.tsx';
+import FounderCard from '../islands/FounderCard/FounderCard.tsx';
+
+const founders = [
+  {
+    name: 'Nicky Almeida',
+    role: 'Founder & Creative Director',
+    eyebrow: 'The Heart. The Legacy. The Experience.',
+    portraitLabel: 'Nicky Almeida · Portrait to follow',
+    image: '',
+    quote: 'We are not measured by what we add, but by what you never have to think about.',
+    bio: [
+      "For more than 30 years, Nicky has dedicated her life to helping couples celebrate love, connection, family, and life's most meaningful milestones. Celebrated in international bridal publications and recognised for her bespoke approach to destination weddings, Nicky has become synonymous with trust, excellence, and timeless elegance.",
+      'Her signature lies in creating refined, elegant weddings and events with heart — where every detail is intentional, every setting breathtaking, and every moment deeply personal.',
+      'Her passion, attention to detail, and unwavering commitment have shaped thousands of unforgettable celebrations.',
+    ],
+  },
+  {
+    name: 'Tayne de Villiers',
+    role: 'Founder & Director of Innovation',
+    eyebrow: 'The Future. The Innovation. The Vision.',
+    portraitLabel: 'Tayne de Villiers · Portrait to follow',
+    image: '',
+    quote: 'Technology here is quiet — it exists only to make the extraordinary feel effortless.',
+    bio: [
+      'Tayne brings a bold and modern approach to luxury celebrations — combining creativity, technology, branding, and experience design to push boundaries and redefine what is possible in the world of luxury weddings and events.',
+      'Driven by innovation and a passion for creating extraordinary experiences, he continues to evolve the family legacy into a globally recognised luxury wedding and event brand.',
+      'Together with Nicky, they are shaping the future of luxury celebrations — ensuring ICE is always a step ahead, without losing an ounce of soul.',
+    ],
+  },
+];
 
 const milestones = [
   { year: '1991', event: "Nicky begins composing celebrations — a reputation built entirely on referral and an unwavering commitment to excellence." },
@@ -39,7 +68,7 @@ const teamMembers = [
     name: 'Yuvi',
     role: 'Junior Planner',
     initial: 'Y',
-    image: '', // ← paste Yuvi's photo URL here
+    image: '/images/team/yuvi.webp',
     caption: 'The planner who holds your wedding as much as she plans it.',
     bio: "She has been called the calmest person in any room on any wedding day — and those who have worked with her know exactly why. Yuvi carries a rare combination of quiet precision and extraordinary warmth. Behind every seamless timeline, every vendor who arrived exactly when they should have, every small crisis averted before anyone even sensed it — there is Yuvi, working with a focus and a devotion that you will feel long before you ever see the results. She does not just plan your wedding. She holds it.",
   },
@@ -47,7 +76,7 @@ const teamMembers = [
     name: 'Luthfi',
     role: 'Production Manager',
     initial: 'L',
-    image: '', // ← paste Luthfi's photo URL here
+    image: '/images/team/luthfi.webp',
     caption: 'The backbone behind every moment that looks effortless.',
     bio: "Every extraordinary celebration has a backbone. Luthfi is ICE's. From the moment a vision leaves the design room to the moment the final lantern is lifted from the sky, Luthfi orchestrates the world behind the scenes with a calm authority that inspires confidence in every artisan, every technician, every person on site. He does not simply manage production — he transforms logistical complexity into invisible poetry. The extraordinary, in his hands, looks exactly like it was always the plan.",
   },
@@ -55,7 +84,7 @@ const teamMembers = [
     name: 'Cetta',
     role: 'Bridal Concierge',
     initial: 'C',
-    image: '', // ← paste Cetta's photo URL here
+    image: '/images/team/cetta.webp',
     caption: 'The presence who ensures you feel nothing but joy, from first light to last dance.',
     bio: "There are people who understand what it truly means to be a bride — not just the logistics, not just the schedule, but the emotional weight of the day, the way time moves differently, the small moments that quietly become the ones you carry forever. Cetta is one of those people. From the stillness of the morning to the last song of the night, she is the warm, steady presence at your side — anticipating what you need before you need it, holding what you should never have to see, and ensuring that on this day, of all days, you feel nothing but the full beauty of exactly where you are. The couples who have had her beside them will tell you she is irreplaceable. We already knew.",
   },
@@ -71,7 +100,7 @@ const teamMembers = [
     name: 'Michele',
     role: 'Head of Sales',
     initial: 'M',
-    image: '', // ← paste Michele's photo URL here
+    image: '/images/team/michele.webp',
     caption: 'The first voice you hear — and the reason you say yes.',
     bio: "Michele is the first voice you hear — and the reason so many couples say yes before they fully understand why. She possesses a gift that cannot be trained: the ability to listen not just to what a couple wants, but to what they are truly hoping to feel, and to reflect it back with such clarity that the path forward becomes undeniable. She does not sell weddings. She recognises visions. She hears the dream underneath the words. And then she begins the conversation that quietly changes everything.",
   },
@@ -165,66 +194,21 @@ const teamMembers = [
       <SectionHeading
         eyebrow="Two Generations · One Vision"
         title="The people behind the house."
+        intro="Tap the seal on each portrait to read their story."
       />
-      <div class="mt-16 grid gap-16 md:grid-cols-2">
-
-        <!-- Nicky -->
-        <article class="reveal-on-scroll">
-          <PlaceholderImage ratio="aspect-[3/4]" label="Nicky Almeida · Portrait to follow" />
-          <p class="eyebrow mt-6 text-champagne">The Heart. The Legacy. The Experience.</p>
-          <h2 class="mt-3 text-3xl text-crystal">Nicky Almeida</h2>
-          <p class="mt-1 font-display text-lg italic text-champagne">Founder &amp; Creative Director</p>
-          <div class="mt-5 space-y-4 leading-relaxed text-silver">
-            <p>
-              For more than 30 years, Nicky has dedicated her life to helping couples celebrate love,
-              connection, family, and life's most meaningful milestones. Celebrated in international
-              bridal publications and recognised for her bespoke approach to destination weddings,
-              Nicky has become synonymous with trust, excellence, and timeless elegance.
-            </p>
-            <p>
-              Her signature lies in creating refined, elegant weddings and events with heart — where
-              every detail is intentional, every setting breathtaking, and every moment deeply personal.
-            </p>
-            <p>
-              Her passion, attention to detail, and unwavering commitment have shaped thousands of
-              unforgettable celebrations.
-            </p>
-          </div>
-          <figure class="mt-8 border-l border-burgundy-soft/45 pl-5">
-            <blockquote class="font-display text-lg leading-snug text-crystal">
-              "We are not measured by what we add, but by what you never have to think about."
-            </blockquote>
-          </figure>
-        </article>
-
-        <!-- Tayne -->
-        <article class="reveal-on-scroll">
-          <PlaceholderImage ratio="aspect-[3/4]" label="Tayne de Villiers · Portrait to follow" />
-          <p class="eyebrow mt-6 text-champagne">The Future. The Innovation. The Vision.</p>
-          <h2 class="mt-3 text-3xl text-crystal">Tayne de Villiers</h2>
-          <p class="mt-1 font-display text-lg italic text-champagne">Founder & Director of Innovation</p>
-          <div class="mt-5 space-y-4 leading-relaxed text-silver">
-            <p>
-              Tayne brings a bold and modern approach to luxury celebrations — combining creativity,
-              technology, branding, and experience design to push boundaries and redefine what is
-              possible in the world of luxury weddings and events.
-            </p>
-            <p>
-              Driven by innovation and a passion for creating extraordinary experiences, he continues
-              to evolve the family legacy into a globally recognised luxury wedding and event brand.
-            </p>
-            <p>
-              Together with Nicky, they are shaping the future of luxury celebrations — ensuring ICE
-              is always a step ahead, without losing an ounce of soul.
-            </p>
-          </div>
-          <figure class="mt-8 border-l border-burgundy-soft/45 pl-5">
-            <blockquote class="font-display text-lg leading-snug text-crystal">
-              "Technology here is quiet — it exists only to make the extraordinary feel effortless."
-            </blockquote>
-          </figure>
-        </article>
-
+      <div class="mt-16 grid gap-10 md:grid-cols-2 md:gap-12">
+        {founders.map((f) => (
+          <FounderCard
+            name={f.name}
+            role={f.role}
+            eyebrow={f.eyebrow}
+            portraitLabel={f.portraitLabel}
+            image={f.image}
+            quote={f.quote}
+            bio={f.bio}
+            client:visible
+          />
+        ))}
       </div>
     </div>
   </section>
