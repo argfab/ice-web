@@ -29,7 +29,7 @@ export const WIZARD_STEPS: WizardStep[] = [
       { id: 'destination-wedding', icon: '◆', label: 'Destination Wedding', detail: 'A world built around your vows' },
       { id: 'indian-wedding', icon: '◉', label: 'Indian Wedding', detail: 'Multi-day cultural celebration' },
       { id: 'multi-day', icon: '◈', label: 'Multi-Day Experience', detail: 'A weekend or more, composed as one' },
-      { id: 'private-estate', icon: '◇', label: 'Private Estate', detail: 'Exclusive use, complete privacy' },
+      { id: 'private-estate', icon: '◇', label: 'Private Villa', detail: 'Exclusive use, complete privacy' },
       { id: 'proposal', icon: '♦', label: 'Proposal', detail: 'One perfect, unforgettable moment' },
       { id: 'corporate', icon: '▷', label: 'Corporate Event', detail: 'Brand experiences & private dinners' },
     ],
@@ -37,7 +37,7 @@ export const WIZARD_STEPS: WizardStep[] = [
   {
     key: 'location',
     question: 'Where do you imagine it?',
-    subtext: 'Our home and the places we know intimately.',
+    subtext: 'The countries we specialise in.',
     options: [
       { id: 'uluwatu', icon: '◆', label: 'Uluwatu, Bali', detail: 'Clifftop ceremonies above the Indian Ocean' },
       { id: 'ubud', icon: '◆', label: 'Ubud, Bali', detail: 'Jungle sanctuaries & rice terrace villas' },
@@ -89,7 +89,7 @@ export const TYPE_LABELS: Record<string, string> = {
   'destination-wedding': 'Destination Wedding',
   'indian-wedding': 'Indian Wedding',
   'multi-day': 'Multi-Day Experience',
-  'private-estate': 'Private Estate Wedding',
+  'private-estate': 'Private Villa Wedding',
   'proposal': 'Proposal',
   'corporate': 'Corporate Event',
 };

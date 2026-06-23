@@ -223,8 +223,8 @@ function SummaryScreen({
         </div>
 
         <p className="mt-6 text-center text-xs leading-relaxed text-silver-soft">
-          Your vision is transferred privately to your application. Nicky and Tayne
-          read every one personally — no obligations, no pressure.
+          Your vision is transferred privately to your application. Nix and Tayne
+          read every one personally, no obligations, no pressure.
         </p>
       </div>
     </div>

@@ -1,19 +1,72 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import ConstellationNode from '../components/ConstellationNode.astro';
 import Starfield from '../components/Starfield.astro';
+import CoupleGallery from '../islands/CoupleGallery/CoupleGallery.tsx';
 
-// Each "star" is a love story. Slots sized for film/photography to be dropped in later.
-const stars = [
-  { title: 'Cliffside vows', place: 'Uluwatu, Bali', span: 'sm:col-span-2 sm:row-span-2', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/b72df930a_ClifftopSunsetImage.jpg' },
-  { title: 'A jungle banquet', place: 'Ubud, Bali', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/6219d8aa1_853eeb24a_IMG_1290.jpg' },
-  { title: 'Harvest under the vines', place: 'Franschhoek, South Africa', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/c13e65a27_270519241_IMG_12881.jpg' },
-  { title: 'Lantern send-off', place: 'Sidemen, Bali', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/1f28e7e5e_GlampNusa-951.jpg' },
-  { title: 'A palace of light', place: 'Rajasthan, India', span: 'sm:col-span-2', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/83587c304_IndianWeddingImage3.jpg' },
-  { title: 'Ocean terrace', place: 'Cape Peninsula', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/769415c40_b088dda90_BeachIMG_2428.jpg' },
-  { title: 'Golden-hour rite', place: 'Tabanan, Bali', span: '', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/ddd547f76_IMG_1269.jpg' },
-  { title: 'A Florentine evening', place: 'Tuscany, Italy', span: 'sm:col-span-2', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f314cbea9084a6f18cb8a1/f6c97968a_AsianIMG_0218.jpg' },
+const couples = [
+  {
+    names: 'Isaac & Whitney',
+    images: [
+      { src: '/images/portfolio/isaac-whitney/01-ceremony-kiss.webp', alt: 'Isaac and Whitney share their first kiss at the floral ceremony arch' },
+      { src: '/images/portfolio/isaac-whitney/02-bride-portrait.webp', alt: 'Whitney facing the ocean in her veil before the ceremony' },
+      { src: '/images/portfolio/isaac-whitney/03-golden-hour.webp', alt: 'Isaac and Whitney sharing a golden-hour moment beside the reception tables' },
+      { src: '/images/portfolio/isaac-whitney/05-cake-sparklers.webp', alt: 'Isaac and Whitney at the cake, framed by sparklers and string lights' },
+    ],
+  },
+  {
+    names: 'Jai & Kajul',
+    images: [
+      { src: '/images/portfolio/jai-kajul/01-ceremony-fire-ritual.webp', alt: 'Jai and Kajul before the sacred fire during their seaside wedding ceremony' },
+      { src: '/images/portfolio/jai-kajul/02-haldi-petals.webp', alt: 'Kajul showered with marigold petals in yellow at her haldi ceremony' },
+      { src: '/images/portfolio/jai-kajul/03-lounge-decor.webp', alt: 'Monogrammed lounge backdrop with marigold and jasmine garlands at the mehndi setup' },
+      { src: '/images/portfolio/jai-kajul/04-clifftop-garden-setup.webp', alt: "Clifftop garden lounge setup overlooking the ocean for Jai and Kajul's celebration" },
+    ],
+  },
+  {
+    names: 'Kersten & William',
+    images: [
+      { src: '/images/portfolio/kersten-william/01-confetti-recessional.webp', alt: 'Kersten and William walk back down the aisle through a shower of confetti' },
+      { src: '/images/portfolio/kersten-william/02-fire-dancers.webp', alt: 'Twin fire dancers in traditional Balinese headdress perform for Kersten and William' },
+      { src: '/images/portfolio/kersten-william/03-sunset-first-dance.webp', alt: 'Kersten and William share their first dance on a checkered floor at sunset by the sea' },
+      { src: '/images/portfolio/kersten-william/04-sparkler-cake-cutting.webp', alt: 'Kersten and William cutting their cake surrounded by cold sparklers at night' },
+    ],
+  },
+  {
+    names: 'Natalie & Max',
+    images: [
+      { src: '/images/portfolio/natalie-max/01-beach-ceremony.webp', alt: 'Natalie and Max exchange vows on the beach beneath a flowing pink ceremony arch' },
+      { src: '/images/portfolio/natalie-max/02-cave-reception-embrace.webp', alt: 'Natalie and Max embrace beside the candlelit table inside their cave reception' },
+      { src: '/images/portfolio/natalie-max/03-chandelier-tablescape.webp', alt: 'Crystal chandeliers hang above the reception table set with pastel florals' },
+      { src: '/images/portfolio/natalie-max/04-fireworks-ceremony.webp', alt: 'Natalie and Max kiss beneath their pampas ceremony arch as fireworks light up the night sky' },
+    ],
+  },
+  {
+    names: 'Juan & Shannon',
+    images: [
+      { src: '/images/portfolio/juan-shannon/01-smoke-bomb-kiss.webp', alt: 'Juan and Shannon kiss beneath a cascade of coloured smoke above their clifftop ceremony' },
+      { src: '/images/portfolio/juan-shannon/02-welcome-sign.webp', alt: "Welcome sign for Juan and Shannon's wedding at AMA Kandara Resort, Bali" },
+      { src: '/images/portfolio/juan-shannon/03-groomsmen-pool.webp', alt: 'Groomsmen celebrating in the infinity pool at night' },
+      { src: '/images/portfolio/juan-shannon/04-confetti-recessional.webp', alt: 'Juan and Shannon walk back down the aisle through a shower of petal confetti' },
+      { src: '/images/portfolio/juan-shannon/05-sunset-reception.webp', alt: 'Oceanfront reception table set for sunset beneath a floral moon arch' },
+      { src: '/images/portfolio/juan-shannon/06-vow-exchange.webp', alt: 'Juan and Shannon exchange vows on the glass platform overlooking the ocean' },
+    ],
+  },
+];
+
+// A curated scattered wall — the best shot or two from each couple, mixed
+// together rather than grouped, with varied tile sizes for a bento feel.
+// Clicking any tile opens that couple's full gallery in the lightbox.
+const featured = [
+  { coupleIndex: 0, src: couples[0].images[0].src, alt: couples[0].images[0].alt, caption: 'First Kiss', span: 'sm:col-span-2 sm:row-span-2' },
+  { coupleIndex: 2, src: couples[2].images[2].src, alt: couples[2].images[2].alt, caption: 'Sunset First Dance', span: 'sm:col-span-2' },
+  { coupleIndex: 1, src: couples[1].images[0].src, alt: couples[1].images[0].alt, caption: 'Sacred Fire Ritual' },
+  { coupleIndex: 3, src: couples[3].images[3].src, alt: couples[3].images[3].alt, caption: 'Fireworks Send-Off' },
+  { coupleIndex: 0, src: couples[0].images[2].src, alt: couples[0].images[2].alt, caption: 'Golden Hour' },
+  { coupleIndex: 1, src: couples[1].images[1].src, alt: couples[1].images[1].alt, caption: 'Haldi Celebration' },
+  { coupleIndex: 2, src: couples[2].images[3].src, alt: couples[2].images[3].alt, caption: 'Sparkler Send-Off' },
+  { coupleIndex: 3, src: couples[3].images[2].src, alt: couples[3].images[2].alt, caption: 'Chandelier Reception' },
+  { coupleIndex: 4, src: couples[4].images[0].src, alt: couples[4].images[0].alt, caption: 'Smoke Bomb Kiss' },
 ];
 ---
 
@@ -21,18 +74,25 @@ const stars = [
   title="Portfolio"
   description="A constellation of love stories composed by ICE Luxury Weddings & Events."
 >
-  <section class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+  <section class="relative isolate min-h-screen overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
+    <img
+      src="/images/portfolio/natalie-max/02-cave-reception-embrace.webp"
+      alt=""
+      aria-hidden="true"
+      width="1200"
+      height="1800"
+      class="absolute inset-0 -z-30 h-full w-full object-cover opacity-20"
+      loading="eager"
+    />
     <Starfield />
     <div class="container-prose py-28 md:py-36">
       <SectionHeading
         as="h1"
         eyebrow="Portfolio"
         title="A constellation of love stories."
-        intro="Films and photography are shared in full during your conversation with the house — much of our work is, by request, never published. A few of the worlds we have built:"
+        intro="Films and photography are shared in full during your conversation with the house."
       />
-      <div class="mt-16 grid auto-rows-[240px] grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-        {stars.map((s) => <ConstellationNode title={s.title} place={s.place} span={s.span} img={s.img} />)}
-      </div>
+      <CoupleGallery couples={couples} featured={featured} client:visible />
     </div>
   </section>
 
