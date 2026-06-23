@@ -39,7 +39,10 @@ export default function FounderCard({
       <div className={`founder-card-inner ${flipped ? 'is-flipped' : ''}`}>
         {/* FRONT — portrait + invitation to read */}
         <div className="founder-face founder-face--front" aria-hidden={flipped}>
-          <div className="founder-face-content founder-face-content--front">
+          <div
+            className="founder-face-content founder-face-content--front cursor-pointer"
+            onClick={toggle}
+          >
             <div className="diamond-grid absolute inset-0 opacity-60" aria-hidden="true" />
             {image ? (
               <img
@@ -59,9 +62,12 @@ export default function FounderCard({
               <h2 className="mt-2 text-2xl text-crystal sm:text-3xl">{name}</h2>
               <p className="mt-1 font-display text-base italic text-champagne/90">{role}</p>
 
+              <blockquote className="mt-4 max-w-xs border-l border-burgundy-soft/45 pl-4 font-display text-sm italic leading-snug text-crystal/90 sm:text-base">
+                &ldquo;{quote}&rdquo;
+              </blockquote>
+
               <button
                 type="button"
-                onClick={toggle}
                 aria-expanded={flipped}
                 aria-controls={panelId}
                 tabIndex={flipped ? -1 : 0}
@@ -77,11 +83,13 @@ export default function FounderCard({
 
         {/* BACK — the full write-up */}
         <div id={panelId} className="founder-face founder-face--back" aria-hidden={!flipped}>
-          <div className="founder-face-content founder-face-content--back">
+          <div
+            className="founder-face-content founder-face-content--back cursor-pointer"
+            onClick={toggle}
+          >
             <div className="flex h-full flex-col p-7 sm:p-9">
               <button
                 type="button"
-                onClick={toggle}
                 tabIndex={flipped ? 0 : -1}
                 className="link-underline inline-flex items-center gap-2 self-start font-sans text-xs tracking-widest text-champagne"
               >

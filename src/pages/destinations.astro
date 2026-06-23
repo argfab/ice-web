@@ -10,14 +10,14 @@ const destinations = (await getCollection('destinations')).sort(
 );
 const statusLabel: Record<string, string> = {
   flagship: 'Flagship',
-  available: 'Now composing',
+  available: '',
   'by-request': 'By request',
 };
 ---
 
 <BaseLayout
   title="Destination Weddings Bali & Worldwide | ICE Luxury Weddings"
-  description="ICE Luxury Weddings composes destination weddings in Bali — Uluwatu, Ubud, Seminyak — and worldwide. Insider access to Bali's most exclusive estates and venues. Luxury Wedding Planner Bali."
+  description="ICE Luxury Weddings composes destination weddings in Bali, Uluwatu, Ubud, Seminyak, and worldwide. Insider access to Bali's most exclusive villas and venues. Luxury Wedding Planner Bali."
 >
   <header class="relative isolate overflow-hidden bg-gradient-to-b from-obsidian via-midnight-deep to-obsidian">
     <Starfield />
@@ -25,8 +25,8 @@ const statusLabel: Record<string, string> = {
       <SectionHeading
         as="h1"
         eyebrow="Destination Weddings · Bali & Worldwide"
-        title="The places we know intimately."
-        intro="We do not work everywhere. We work where we have the relationships — with venues, families, and artisans — to make the extraordinary feel completely effortless."
+        title="Countries we specialise in."
+        intro="We do weddings and events across the globe. Our top picks are as follows:"
       />
     </div>
   </header>
@@ -46,14 +46,14 @@ const statusLabel: Record<string, string> = {
                 ratio="aspect-[4/3]"
                 label={statusLabel[d.data.status]}
                 src={d.data.image || undefined}
-                alt={`${d.data.title} — ${d.data.region}`}
+                alt={`${d.data.title}, ${d.data.region}`}
               />
             </figure>
             <div>
               <p class="eyebrow">{d.data.region}</p>
               <h2 class="mt-4 text-3xl text-crystal sm:text-4xl">{d.data.title}</h2>
               <p class="mt-5 text-lg leading-relaxed text-silver">{d.data.summary}</p>
-              {d.data.detail && <p class="mt-4 leading-relaxed text-silver-soft">{d.data.detail}</p>}
+              {d.data.detail && <p class="mt-4 leading-relaxed text-silver">{d.data.detail}</p>}
             </div>
           </article>
         ))

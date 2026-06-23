@@ -17,7 +17,7 @@ const FEATURES: Feature[] = [
     title: 'Dream Builder Canvas',
     tagline: 'Your vision, visualised in real time.',
     description:
-      'An immersive planning canvas where your celebration takes form — mood boards, spatial layouts, design narrative, and aesthetic direction, all in one living document.',
+      'An immersive planning canvas where your celebration takes form, mood boards, spatial layouts, design narrative, and aesthetic direction, all in one living document.',
     mockLines: [
       '◈  Ceremony · Cliffside at Uluwatu',
       '◈  Palette · Ivory · Champagne · Sage',
@@ -34,7 +34,7 @@ const FEATURES: Feature[] = [
     title: 'Budget Estimation Engine',
     tagline: 'Complete financial clarity from day one.',
     description:
-      'Real-time, line-item budget estimation across every element of your celebration. No hidden costs, no surprises — complete confidence at every stage.',
+      'Real-time, line-item budget estimation across every element of your celebration. No hidden costs, no surprises, complete confidence at every stage.',
     mockLines: [
       '  Venue & Estate Buyout   ████████  28%',
       '  Florals & Installation  █████     16%',
@@ -68,7 +68,7 @@ const FEATURES: Feature[] = [
     title: 'Private Client Portal',
     tagline: 'Everything. One place. Always with you.',
     description:
-      'A beautifully organised digital home for your celebration — timeline, contacts, design references, payment schedules, and a direct line to your ICE team.',
+      'A beautifully organised digital home for your celebration, timeline, contacts, design references, payment schedules, and a direct line to your ICE team.',
     mockLines: [
       '  Timeline         ●●●●●●○○  74% Complete',
       '  Payments         ●●●○○○○○  On Schedule',

@@ -21,7 +21,8 @@ const press = defineCollection({
   loader: glob({ pattern: '**/*.{yml,yaml}', base: './src/content/press' }),
   schema: z.object({
     outlet: z.string(),
-    quote: z.string(),
+    quote: z.string().optional(),
+    logo: z.string().optional(), // path to a real logo asset; falls back to styled text when absent
     order: z.number().default(99),
   }),
 });

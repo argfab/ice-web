@@ -8,7 +8,7 @@ const press = (await getCollection('press')).sort((a, b) => a.data.order - b.dat
 
 const stats = [
   { value: 30, suffix: '+', label: 'Years of Excellence' },
-  { value: 500, suffix: '+', label: 'Celebrations Composed' },
+  { value: 1500, suffix: '+', label: 'Celebrations Composed' },
   { value: 15, suffix: '+', label: 'Destinations' },
   { value: 4, suffix: '', label: 'Continents' },
 ];
@@ -26,7 +26,7 @@ const recognitions = [
     category: 'Industry Standing',
     entries: [
       { outlet: '30+ Years', detail: 'Unbroken reputation built entirely on referral and word of mouth' },
-      { outlet: 'By Application Only', detail: 'A limited number of celebrations each year — quality, never volume' },
+      { outlet: 'By Application Only', detail: 'A limited number of celebrations each year, quality, never volume' },
       { outlet: "Bali's First", detail: 'Technology-powered luxury wedding architecture studio' },
     ],
   },
@@ -35,7 +35,7 @@ const recognitions = [
 
 <BaseLayout
   title="Recognition — Press & Awards | ICE Luxury Weddings & Events Bali"
-  description="ICE Luxury Weddings & Events — recognised by Forbes, Vogue Bride, and Tatler. 30+ years of luxury wedding excellence in Bali and worldwide."
+  description="ICE Luxury Weddings & Events, recognised by Forbes, Vogue Bride, and Tatler. 30+ years of luxury wedding excellence in Bali and worldwide."
 >
 
   <!-- HERO -->
@@ -46,7 +46,7 @@ const recognitions = [
         as="h1"
         eyebrow="Recognition"
         title="Quietly, in remarkable company."
-        intro="We rarely seek the spotlight — but the celebrations we compose, and the couples who trust us with them, have a way of finding it."
+        intro="We rarely seek the spotlight, but the celebrations we compose, and the couples who trust us with them, have a way of finding it."
       />
     </div>
   </header>
@@ -74,9 +74,13 @@ const recognitions = [
       <ul class="grid gap-px overflow-hidden rounded-3xl border border-silver/10 sm:grid-cols-3">
         {press.map((p) => (
           <li class="press-item reveal-on-scroll flex flex-col items-center justify-center gap-3 bg-obsidian/60 px-8 py-16 text-center">
-            <span class="font-display text-3xl tracking-wide text-crystal sm:text-4xl">
-              {p.data.outlet}
-            </span>
+            {p.data.logo ? (
+              <img src={p.data.logo} alt={p.data.outlet} loading="lazy" decoding="async" class="h-10 w-auto sm:h-12" />
+            ) : (
+              <span class="font-display text-3xl tracking-wide text-crystal sm:text-4xl">
+                {p.data.outlet}
+              </span>
+            )}
             {p.data.quote && (
               <p class="max-w-xs text-sm leading-relaxed text-silver/70 italic">"{p.data.quote}"</p>
             )}
@@ -95,7 +99,7 @@ const recognitions = [
             <p class="eyebrow text-champagne">{r.category}</p>
             <ul class="mt-8 space-y-4">
               {r.entries.map((e) => (
-                <li class="recog-card glass rounded-xl px-6 py-5">
+                <li class="recog-card glass flex min-h-40 flex-col justify-center rounded-xl px-6 py-5">
                   <p class="font-display text-xl text-crystal">{e.outlet}</p>
                   <p class="mt-2 text-sm leading-relaxed text-silver">{e.detail}</p>
                 </li>
@@ -112,8 +116,8 @@ const recognitions = [
     <div class="container-prose py-20 text-center">
       <p class="eyebrow text-champagne">Thirty Years · One Standard</p>
       <p class="mx-auto mt-5 max-w-2xl text-balance text-lg leading-relaxed text-crystal">
-        More than three decades composing the world's most extraordinary celebrations — and a
-        modern house, powered by proprietary technology, built to carry that legacy forward.
+        More than three decades composing the world's most extraordinary celebrations, and a
+        modern house, powered by ICE technology, built to carry that legacy forward.
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <a href="/apply" class="btn-gold sheen">Begin Your Journey</a>
